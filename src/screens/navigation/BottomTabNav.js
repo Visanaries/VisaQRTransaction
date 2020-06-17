@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // SCREENS
 import HomeScreen from '../customer/HomeScreen';
 import ProfileScreen from '../customer/ProfileScreen';
+//import Camera from '../../components/QrScanner/CameraQrScanner';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
