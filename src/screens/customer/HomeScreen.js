@@ -1,5 +1,8 @@
+import React from 'react'
+import { View, Text, StyleSheet, Button } from 'react-native';
+import AuthContext from '../../constants/AuthContext';
 
-function HomeScreen() {
+const HomeScreen  = () => {
     const { signOut } = React.useContext(AuthContext);
   
     return (
@@ -9,3 +12,5 @@ function HomeScreen() {
       </View>
     );
   }
+
+  export default HomeScreen;

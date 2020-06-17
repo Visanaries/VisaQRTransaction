@@ -5,8 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import AuthContext from './src/constants/AuthContext';
 import SignIn from './src/screens/auth/SignIn';
-import HomeScreen from './src/screens/customer/HomeScreen';
-
+import HomeScreen from './src/screens/customer/HomeScreen'
 function SplashScreen() {
   return (
     <View>
