@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // SCREENS
 import HomeScreen from '../customer/HomeScreen';
 import ProfileScreen from '../customer/ProfileScreen';
+import Menu from '../menu/Menu';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -26,6 +27,13 @@ const BottomTabNav = ({ navigation, route }) => {
           title: 'Profile',
         }}
       />
+      <BottomTab.Screen
+        name='Menu'
+        component={Menu}
+        options={{
+          title: 'Menu',
+        }}
+      />
     </BottomTab.Navigator>
   );
 };
@@ -40,6 +48,8 @@ function getHeaderTitle(route) {
 
     case 'Profile':
       return 'Profile';
+    case 'Menu':
+      return 'Menu';
   }
 }
 
