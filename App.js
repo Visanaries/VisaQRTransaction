@@ -1,146 +1,114 @@
-import * as React from 'react';
+import React from 'react';
+import { StyleSheet, Text, View ,TouchableOpacity,Platform, } from 'react-native';
+import { Camera } from 'expo-camera';
+import * as Permissions from 'expo-permissions';
+import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
-import {
-  AsyncStorage,
-  Button,
-  Text,
-  TextInput,
-  View,
-  StyleSheet,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import AuthContext from './src/constants/AuthContext';
-import SignIn from './src/screens/auth/SignIn';
-import SignUp from './src/screens/auth/SignUp';
-import HomeScreen from './src/screens/customer/HomeScreen';
-import ScreenCOntainer from './src/components/ScreenContainer';
-import BottomTabNav from './src/screens/navigation/BottomTabNav';
 
-function SplashScreen() {
-  return (
-    <View>
-      <Text>Loading...</Text>
-    </View>
-  );
-}
 
-const Stack = createStackNavigator();
+export default class App extends React.Component {
+  state = {
+    hasPermission: null,
+    cameraType: Camera.Constants.Type.back,
+  }
 
-export default function App({ navigation }) {
-  const [state, dispatch] = React.useReducer(
-    (prevState, action) => {
-      switch (action.type) {
-        case 'RESTORE_TOKEN':
-          return {
-            ...prevState,
-            userToken: action.token,
-            isLoading: false,
-          };
-        case 'SIGN_IN':
-          return {
-            ...prevState,
-            isSignout: false,
-            userToken: action.token,
-          };
-        case 'SIGN_OUT':
-          return {
-            ...prevState,
-            isSignout: true,
-            userToken: null,
-          };
+  async componentDidMount() {
+    this.getPermissionAsync()
+  }
+
+  getPermissionAsync = async () => {
+    // Camera roll Permission 
+    if (Platform.OS === 'ios') {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
       }
-    },
-    {
-      isLoading: true,
-      isSignout: false,
-      userToken: null,
     }
-  );
+    // Camera Permission
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasPermission: status === 'granted' });
+  }
 
-  React.useEffect(() => {
-    // Fetch the token from storage then navigate to our appropriate place
-    const bootstrapAsync = async () => {
-      let userToken;
+  handleCameraType=()=>{
+    const { cameraType } = this.state
 
-      try {
-        userToken = await AsyncStorage.getItem('userToken');
-      } catch (e) {
-        // Restoring token failed
-      }
+    this.setState({cameraType:
+      cameraType === Camera.Constants.Type.back
+      ? Camera.Constants.Type.front
+      : Camera.Constants.Type.back
+    })
+  }
 
-      // After restoring token, we may need to validate it in production apps
+  takePicture = async () => {
+    if (this.camera) {
+      let photo = await this.camera.takePictureAsync();
 
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
-    };
+    }
+  }
 
-    bootstrapAsync();
-  }, []);
-
-  const authContext = React.useMemo(
-    () => ({
-      signIn: async (data) => {
-        // In a production app, we need to send some data (usually username, password) to server and get a token
-        // We will also need to handle errors if sign in failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
-
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
-      },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
-      signUp: async (data) => {
-        // In a production app, we need to send user data to server and get a token
-        // We will also need to handle errors if sign up failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
-
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
-      },
-    }),
-    []
-  );
-
-  return (
-    <View style={styles.container}>
-      <AuthContext.Provider value={authContext}>
-        <NavigationContainer>
-          <Stack.Navigator headerMode='none'>
-            {state.isLoading ? (
-              // We haven't finished checking for the token yet
-              <Stack.Screen name='Splash' component={SplashScreen} />
-            ) : state.userToken == null ? (
-              // No token found, user isn't signed in
-              <>
-                <Stack.Screen
-                  name='SignIn'
-                  component={SignIn}
-                  options={{
-                    title: 'Sign In',
-                    // When logging out, a pop animation feels intuitive
-                    animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-                  }}
-                />
-                <Stack.Screen name='SignUp' component={SignUp} />
-              </>
-            ) : (
-              // User is signed in
-              <Stack.Screen name='Home' component={BottomTabNav} />
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </AuthContext.Provider>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images
+    });
+  }
   
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-});
+
+  render(){
+    const { hasPermission } = this.state
+    if (hasPermission === null) {
+      return <View />;
+    } else if (hasPermission === false) {
+      return <Text>No access to camera</Text>;
+    } else {
+      return (
+          <View style={{ flex: 1 }}>
+            <Camera style={{ flex: 1 }} type={this.state.cameraType}  ref={ref => {this.camera = ref}}>
+              <View style={{flex:1, flexDirection:"row",justifyContent:"space-between",margin:30}}>
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'flex-end',
+                    alignItems: 'center',
+                    backgroundColor: 'transparent'                 
+                  }}
+                  onPress={()=>this.pickImage()}>
+                  <Ionicons
+                      name="ios-photos"
+                      style={{ color: "#fff", fontSize: 40}}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'flex-end',
+                    alignItems: 'center',
+                    backgroundColor: 'transparent',
+                  }}
+                  onPress={()=>this.takePicture()}
+                  >
+                  <FontAwesome
+                      name="camera"
+                      style={{ color: "#fff", fontSize: 40}}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'flex-end',
+                    alignItems: 'center',
+                    backgroundColor: 'transparent',
+                  }}
+                  onPress={()=>this.handleCameraType()}
+                  >
+                  <MaterialCommunityIcons
+                      name="camera-switch"
+                      style={{ color: "#fff", fontSize: 40}}
+                  />
+                </TouchableOpacity>
+              </View>
+            </Camera>
+        </View>
+      );
+    }
+  }
+  
+}
