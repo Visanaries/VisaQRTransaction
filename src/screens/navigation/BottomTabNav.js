@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // SCREENS
 import HomeScreen from '../customer/HomeScreen';
 import ProfileScreen from '../customer/ProfileScreen';
+import CameraQR from '../../components/QrScanner/CameraQR';
 //import Camera from '../../components/QrScanner/CameraQrScanner';
 
 const BottomTab = createBottomTabNavigator();
@@ -25,6 +26,13 @@ const BottomTabNav = ({ navigation, route }) => {
         component={ProfileScreen}
         options={{
           title: 'Profile',
+        }}
+      />
+      <BottomTab.Screen
+        name='QRScanner'
+        component={CameraQR}
+        options={{
+          title: 'QRScanner',
         }}
       />
     </BottomTab.Navigator>
