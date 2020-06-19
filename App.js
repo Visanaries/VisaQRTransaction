@@ -15,8 +15,6 @@ import AuthContext from './src/constants/AuthContext';
 import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 
-import HomeScreen from './src/screens/customer/HomeScreen';
-import ScreenContainer from './src/components/ScreenContainer';
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 
 function SplashScreen() {

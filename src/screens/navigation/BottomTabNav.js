@@ -43,12 +43,6 @@ const BottomTabNav = ({ navigation, route }) => {
         }}
       />
 
-        name='QRScanner'
-        component={QRScannerScreen}
-        options={{
-          title: 'QRScanner',
-        }}
-      />
       <BottomTab.Screen
         name='CMerchant'
         component={CustomerMerchantScreen}
