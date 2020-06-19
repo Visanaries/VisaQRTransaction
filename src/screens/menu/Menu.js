@@ -1,128 +1,191 @@
 import React, {useState} from 'react';
-import { View, Text, Button, ScrollView, Modal, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Button, ScrollView, Modal, TouchableOpacity, StyleSheet, FlatList, FlexBox } from 'react-native';
+import { CheckBox } from 'react-native-elements'
 import AuthContext from '../../constants/AuthContext';
 import ScreenContainer from '../../components/ScreenContainer';
 
 const Items = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Lettuce',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Tomato',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Onion',
-    },
-    {
+  {
+    id: 'bd743bea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Hamburger',
+    price: "$8",
+    inglist: [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Lettuce',
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Tomato',
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Onion',
+      },
+      {
+          id: '58694a0f-3da1-473f-bd96-143331e29d72',
+          title: 'Ketchup',
+      },
+  ],
+  },
+  {
+    id: '3ac68afc-b105-48d3-a4f8-fbd91aa97f63',
+    title: 'Cheeseburger',
+    price: "$9",
+    inglist: [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Lettuce',
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Tomato',
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Onion',
+      },
+      {
+          id: '58694a0f-3da1-473f-bd96-143331e29d72',
+          title: 'Ketchup',
+      },
+      {
+        id:'58694a0f-3da1-473f-bd96-1433346s9d72',
+        title: 'Cheese',
+      },
+    ],
+  },
+  {
+    id: '58694a0f-3da1-881f-bd96-108571e29d72',
+    title: 'French Fries',
+    price: "$3",
+    inglist: [
+      {
+          id: '58694a0f-3da1-473f-bd96-143331e29d72',
+          title: 'Ketchup',
+      },
+    ],
+  },
+  {
+    id: 'bd74aaaa-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Salad',
+    price: "$5",
+    inglist: [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Lettuce',
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Tomato',
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Onion',
+      },
+      {
+          id: '58694a0f-3da1-473f-bd96-143331e29d72',
+          title: 'Salad Dressing',
+      },
+      {
         id: '58694a0f-3da1-473f-bd96-143331e29d72',
-        title: 'Ketchup',
-    },
-  ];
+        title: 'Croutons',
+      },
+  ],
+  },
+];
 
-function Item({ id, title, selected, onSelect }) {
-    return (
-      <TouchableOpacity
-        onPress={() => onSelect(id)}
-        style={[
-          styles.item,
-          { backgroundColor: selected ? 'green' : 'red' },
-        ]}
+function SubItem({ id, title}) {
+  const [isChecked, setChecked] = useState(true)
+  return (
+    <CheckBox
+    style={styles.modalText}
+    title={title}
+    checked= {isChecked}
+    onPress={() => setChecked(!isChecked)}
+    />
+  );
+}
+
+function Item({ id, title, price, inglist}) {
+  const [modalVisible, setModalVisible] = useState(false);
+  return (
+    <View style={{flex:1}}>
+      <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        Alert.alert("Modal has been closed.");
+      }}
       >
-        <Text style={styles.modalText}>{title}</Text>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={styles.modalHeader}>{title}</Text>
+              <Text style={styles.modalHeader}>{price}</Text>
+            </View>
+            <Text style={styles.modalSubHeader}>Items</Text>
+            <FlatList
+            data={inglist}
+            renderItem={({ item }) => (
+              <SubItem
+              id={item.id}
+              title={item.title}
+              />
+            )}
+            keyExtractor={item => item.id}
+            />
+            <Text>{"\n"}</Text>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+              style={{ ...styles.openButton, backgroundColor: "#999999", flex: 1 }}
+              >
+                <Text style={styles.textStyle}>Add To Cart</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+              style={{ ...styles.openButton, backgroundColor: "#2196F3", flex: 1 }}
+              onPress={() => {
+              setModalVisible(!modalVisible);
+              }}
+              >
+                <Text style={styles.textStyle}>Back</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <TouchableOpacity
+      style={styles.openButton}
+      onPress={() => {
+          setModalVisible(true);
+        }}
+      >
+        <Text>{title}</Text>
       </TouchableOpacity>
-    );
+    </View>
+  );
 }
 
 const Menu = () => {
   const { signOut } = React.useContext(AuthContext);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selected, setSelected] = React.useState(new Map());
-  const onSelect = React.useCallback(
-    id => {
-      const newSelected = new Map(selected);
-      newSelected.set(id, !selected.get(id));
-
-      setSelected(newSelected);
-    },
-    [selected],
-  );
   return (
-    <ScreenContainer>
-      <ScrollView>
+      <ScreenContainer>
         <Text style={styles.headerText}>Bubba's Burgers</Text>
         <Text>{"\n"}</Text>
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalHeader}>Hamburger - $8</Text>
-            <Text style={styles.modalSubHeader}>Items</Text>
-            <FlatList
-            data={Items}
-            renderItem={({ item }) => (
-                <Item
-                id={item.id}
-                title={item.title}
-                selected={!!selected.get(item.id)}
-                onSelect={onSelect}
-            />
-            )}
-            keyExtractor={item => item.id}
-            extraData={selected}
-            />
-             <TouchableOpacity
-              style={{ ...styles.openButton, backgroundColor: "#999999" }}
-            >
-              <Text style={styles.textStyle}>Add To Cart</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-      
-      <TouchableOpacity
-        style={styles.openButton}
-        onPress={() => {
-            setModalVisible(true);
-          }}
-      >
-        <Text>Hamburger</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.openButton}
-        onPress={() => {
-            setModalVisible(true);
-          }}
-      >
-        <Text>Press Here</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.openButton}
-        onPress={() => {
-            setModalVisible(true);
-          }}
-      >
-        <Text>Press Here</Text>
-      </TouchableOpacity>
-        <Button title='Sign out' onPress={signOut} />
-      </ScrollView>
-    </ScreenContainer>
+        <FlatList
+        data={Items}
+        renderItem={({ item }) => (
+          <Item
+          id={item.id}
+          title={item.title}
+          price={item.price}
+          inglist={item.inglist}
+          />
+        )}
+        keyExtractor={item => item.id}
+        />
+      </ScreenContainer>
   );
 };
 
@@ -156,6 +219,7 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       borderColor: "grey",
       borderWidth: 1,
+
       padding: 10
     },
     textStyle: {
@@ -164,19 +228,20 @@ const styles = StyleSheet.create({
       textAlign: "center"
     },
     modalText: {
+      flex: 1,
       marginBottom: 15,
       textAlign: "center"
     },
     modalHeader: {
       color: "black",
       fontWeight: "bold",
-      fontSize: 20,
+      fontSize: 25,
       textAlign: "center"
     },
     modalSubHeader: {
         color: "black",
         fontWeight: "bold",
-        fontSize: 15,
+        fontSize: 20,
         textAlign: "left"
       }
   });
