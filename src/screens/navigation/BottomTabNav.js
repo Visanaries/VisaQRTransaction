@@ -3,6 +3,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // SCREENS
+
 import HomeScreen from '../customermerchant/HomeScreen';
 // import ProfileScreen from '../customermerchant/ProfileScreen';
 // import CameraQR from '../../components/QrScannerCamera/CameraQR';
@@ -11,6 +12,8 @@ import MerchantScreen from '../merchant/MerchantScreen';
 import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import CameraQR from '../../components/QrScannerCamera/CameraQR';
+import Menu from '../menu/Menu';
+
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -33,6 +36,13 @@ const BottomTabNav = ({ navigation, route }) => {
         }}
       />
       <BottomTab.Screen
+        name='Menu'
+        component={Menu}
+        options={{
+          title: 'Menu',
+        }}
+      />
+
         name='QRScanner'
         component={QRScannerScreen}
         options={{
@@ -90,6 +100,8 @@ function getHeaderTitle(route) {
 
     case 'Profile':
       return 'Profile';
+    case 'Menu':
+      return 'Menu';
   }
 }
 
