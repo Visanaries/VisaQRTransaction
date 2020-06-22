@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View ,TouchableOpacity,Platform, } from 'react-native';
+import { StyleSheet, Text, View ,TouchableOpacity,Platform, Button } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
@@ -7,7 +7,8 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 
-
+//export default function CustomerMerchantScreen({ navigation }) {
+ 
 export default class CameraQR extends React.Component {
   state = {
     hasPermission: null,
@@ -56,6 +57,7 @@ export default class CameraQR extends React.Component {
   
 
   render(){
+    let  navigation;
     const { hasPermission } = this.state
     if (hasPermission === null) {
       return <View />;
@@ -103,7 +105,9 @@ export default class CameraQR extends React.Component {
                       name="camera-switch"
                       style={{ color: "#fff", fontSize: 40}}
                   />
+                   
                 </TouchableOpacity>
+                <Button title="Go back" onPress={() => navigation.navigate('QRScannerScreen')} />
               </View>
             </Camera>
         </View>

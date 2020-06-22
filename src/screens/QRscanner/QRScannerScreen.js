@@ -3,6 +3,8 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, Image,  ImageBackground
 import Constants from 'expo-constants';
 //import { Window_Width, Window_Height} from '../../utils/constants';
 //import Router from '../navigation/Router';
+import BottomTabNav from '../navigation/BottomTabNav';
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -10,7 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
-export default function CustomerMerchantScreen() {
+export default function CustomerMerchantScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -23,9 +25,7 @@ export default function CustomerMerchantScreen() {
           <View>
            <View style={styles.middlerContent}>
              <TouchableOpacity
-          //    onPress = {() => {
-          //     Router.navigation('CameraQR', {CameraQR: 'CameraQR'});
-          // }}
+              onPress={() => navigation.navigate('CameraQR')}
              >
            <ImageBackground 
                 source={{uri: 'https://www.dummies.com/wp-content/uploads/324172.image0.jpg'}}

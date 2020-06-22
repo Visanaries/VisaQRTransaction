@@ -14,6 +14,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthContext from './src/constants/AuthContext';
 import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
+import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
+import CameraQR from './src/components/QrScanner/CameraQR';
+
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 
@@ -123,11 +126,16 @@ export default function App({ navigation }) {
                   }}
                 />
                 <Stack.Screen name='SignUp' component={SignUp} />
+                
               </>
             ) : (
               // User is signed in
               <Stack.Screen name='Home' component={BottomTabNav} />
             )}
+              <Stack.Screen name='CameraQR' component={CameraQR} />
+              <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
+
+            
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
