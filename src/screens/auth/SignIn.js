@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -7,6 +7,8 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Animated,
+  ImageBackground,
 } from 'react-native';
 
 import AuthContext from '../../constants/AuthContext';
@@ -20,10 +22,43 @@ const SignIn = ({ navigation }) => {
 
   const { signIn } = React.useContext(AuthContext);
 
+  //Fade Animation
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnimation = useRef(new Animated.Value(0)).current;
+  React.useEffect(() => 
+  {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 3000,
+      }
+    ).start();
+
+    Animated.timing(
+      slideAnimation,
+      {
+        toValue: 1,
+        duration: 2000,
+      }
+    ).start();
+  }, [])
+
   return (
     <ScreenContainer style = {styles.container}>
+
+      {/* Animated Logo */}
+      <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnimation.interpolate({ inputRange: [0, 1], outputRange: [-350, 0] })}], }}>
+        <Image style = {styles.visaTouchlessLogo} source = {require("../../image_resources/VisaTouchlessLogo_Combined.png")}/>
+      </Animated.View>
+
+
+
       <View style = {styles.signInView}>
-        <Image style = {styles.visaLogo} source = {require("../../image_resources/VisaLogo.png")} />
+        <View style = {styles.logoView}>
+          <Image style = {styles.visaWordLogo} source = {require("../../image_resources/VisaWordLogo.png")} />
+          <Text style = {styles.visaTouchlessText}>Touchless</Text>
+        </View>
         <TextInput style = {styles.textInput}
           placeholder='Username'
           value={username}
@@ -38,13 +73,15 @@ const SignIn = ({ navigation }) => {
         <TouchableOpacity style = {styles.signUpButton} onPress={() => signIn({ username, password })}>
           <Text style = {styles.signUpText}>SIGN IN</Text>
         </TouchableOpacity>
-        <Button style = {styles.signUpButton}
-          title='Sign Up' 
-          onPress={() => signIn({ username, password })}
-        />
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-          <Text>Don't have an account!? Sign Up!</Text>
-        </TouchableOpacity>
+
+        <View style = {styles.extraOptionsView}>
+          <Button title = "Create Account" onPress={() => navigation.navigate('SignUp')}></Button>
+          <Button title = "Forgot Password?" ></Button>
+        </View>
+
+        <View style = {styles.userView}>
+        </View>
+
       </View>
     </ScreenContainer>
   );
@@ -60,7 +97,25 @@ const styles = StyleSheet.create(
   },
   signInView:
   {
-
+  },
+  logoView:
+  {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 70,
+  },
+  extraOptionsView:
+  {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  userView:
+  {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
   },
   textInput: 
   {
@@ -79,10 +134,8 @@ const styles = StyleSheet.create(
   {
     backgroundColor: "#1A1F71",
     margin: 20,
-    marginTop: 30,
+    marginTop: 25,
     alignItems: "center",
-    //borderWidth: 2,
-    //borderColor: "#F7B600",
     borderRadius: 50,
     shadowColor: 'rgba(0,0,0, .5)',           // iPhone
     shadowOffset: { height: 2, width: 2 },    // iPhone
@@ -96,9 +149,31 @@ const styles = StyleSheet.create(
     padding: 13,
     fontSize: 25,
   }, 
-  visaLogo:
+  visaTouchlessText:
   {
-      width: 109,
+    paddingLeft: 5,
+    fontSize: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#1a1F71"
+  },
+  visaWordLogo:
+  {
+      width: 114,
+      height: 38,
+      alignSelf: "center",
+  },
+  visaTouchlessLogo:
+  {
+      width: 348,
+      height: 204,
+      alignSelf: "center",
+      marginTop: 50,
+      marginBottom: 30,
+  },
+  QRLogo:
+  {
+      width: 88,
       height: 68,
       alignSelf: "center",
   },
