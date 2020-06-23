@@ -15,7 +15,7 @@ import AuthContext from './src/constants/AuthContext';
 import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
-import CameraQR from './src/components/QrScanner/CameraQR';
+import CameraQR from './src/components/QrScannerCamera/CameraQR';
 
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
