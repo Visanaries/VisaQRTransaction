@@ -16,6 +16,7 @@ import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScanner/CameraQR';
+import Checkout from './src/screens/checkout/Checkout';
 
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
@@ -134,7 +135,7 @@ export default function App({ navigation }) {
             )}
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
-
+              <Stack.Screen name='Checkout' component={Checkout} />
             
           </Stack.Navigator>
         </NavigationContainer>
