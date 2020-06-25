@@ -9,16 +9,14 @@ import MerchantScreen from '../merchant/MerchantScreen';
 import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import Menu from '../menu/Menu';
-import OptionScreen from '../PaymentFlow/OptionScreen';
-
-
+import OptionStackScreen from '../PaymentFlow/OptionStackScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
 const BottomTabNav = ({ navigation, route }) => {
   return (
-    <BottomTab.Navigator headerMode="none">
+    <BottomTab.Navigator headerMode='none'>
       <BottomTab.Screen
         name='Home'
         component={HomeScreen}
@@ -66,12 +64,11 @@ const BottomTabNav = ({ navigation, route }) => {
 
       <BottomTab.Screen
         name='Options'
-        component={OptionScreen}
+        component={OptionStackScreen}
         options={{
           title: 'Options',
         }}
       />
-
     </BottomTab.Navigator>
   );
 };

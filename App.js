@@ -17,9 +17,9 @@ import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScanner/CameraQR';
 
-
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
-import ModalScreen from './src/screens/PaymentFlow/ModalScreen';
+import ModalScreen from './src/screens/PaymentFlow/PayScreen';
+import PayScreen from './src/screens/PaymentFlow/Options';
 
 function SplashScreen() {
   return (
@@ -128,15 +128,11 @@ export default function App({ navigation }) {
                   }}
                 />
                 <Stack.Screen name='SignUp' component={SignUp} />
-                
               </>
             ) : (
               // User is signed in
               <Stack.Screen name='Home' component={BottomTabNav} />
-             
             )}
-            
-              
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>

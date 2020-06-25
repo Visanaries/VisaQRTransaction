@@ -10,21 +10,23 @@ import {
 import { Window_Width, Window_Height } from '../../utils/constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import PayScreen from './PayScreen';
-import ModalScreen from './ModalScreen';
+import Options from './Options';
+import Menu from '../menu/Menu';
 
 
 const OptionStack = createStackNavigator();
 
-const OptionScreen = ({navigation}) => {
+const OptionStackScreen = ({navigation}) => {
   return (
     <OptionStack.Navigator headerMode="none">
-     <OptionStack.Screen name="Pay" component={PayScreen}/>
-     <OptionStack.Screen name="Modal" component={ModalScreen}/> 
+     <OptionStack.Screen name="Pay" component={Options}/>
+     <OptionStack.Screen name="PayScreen" component={PayScreen}/> 
+     <OptionStack.Screen name="Menu" component={Menu}/>
     </OptionStack.Navigator>
   );
 };
 
-export default OptionScreen;
+export default OptionStackScreen;
 
 const styles = StyleSheet.create({
   container: {
