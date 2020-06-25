@@ -112,69 +112,91 @@
 //   }
   
 // }
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator
+} from 'react-native';
 
-
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Linking, TouchableOpacity } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-
-export default function CameraQR() {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
-
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    console.log(data);
-    // var data1= data;
-    //this.setState({data:data});
-    //let dataa = this.props.data;
-  //  Linking.openURL({data})
-  //this.setState({data1:data})
-  };
-  //var { data } = this.state
-  //console.log(data);
-
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }else{
-    <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
-  <Text style={{color: 'blue'}}>
-    Google
-  </Text>
-</TouchableOpacity>
-  }
-
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-      }}>
+export default class Template extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          isLoading: true,
+          dataSource: null,
+        }
+      }
     
+        componentDidMount (){
+          return fetch('https://facebook.github.io/react-native/movies.json')
+            .then( (response) => response.json() )
+            .then( (responseJson) => {
 
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-         
-      />
-     {/* // <Text>{this.state.data1}</Text>  */}
-      {scanned &&(<Text> data</Text>) && (
-       
-        <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />
-      )}
-    </View>
-  );
+              this.setState({
+                  isLoading:false,
+                  dataSource:responseJson.movies,
+              })
+    
+            })
+    
+            .catch((error)=>{
+                console.log(error)
+            });
+    
+            
+        }
+      
+    
+      render() {
+    
+        if(this.state.isLoading){
+          return(
+            
+              <View>
+                <ActivityIndicator/>
+              </View>
+            
+          )
+        } else {
+
+            let movies = this.state.dataSource.map((val, key) => {
+                return  <View key={key} style={styles.item}>
+                    <Text> {val.title}</Text>
+                
+                </View>
+            });
+            
+      
+      return(
+        
+            <View>
+                {movies}
+            </View>
+            
+      );
+     }
+  }
 }
+      
+
+ 
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  item: {  
+      flex:1,
+      alignSelf: 'stretch',
+}
+});
+
+
+
+
+

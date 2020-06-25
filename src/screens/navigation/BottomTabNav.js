@@ -11,6 +11,7 @@ import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import CameraQR from '../../components/QrScannerCamera/CameraQR';
 import Menu from '../menu/Menu';
+import ApiCallerQR from '../QRscanner/Assets/ApiCallerQR';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -63,6 +64,14 @@ const BottomTabNav = ({ navigation, route }) => {
           title: 'QR',
         }}
       />
+
+{/* <BottomTab.Screen
+        name='QR'
+        component={ApiCallerQR}
+        options={{
+          title: 'QR',
+        }}
+      /> */}
 
       {/* <BottomTab.Screen
         name='QA'
