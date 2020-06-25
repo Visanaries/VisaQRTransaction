@@ -3,22 +3,20 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // SCREENS
-
 import HomeScreen from '../customermerchant/HomeScreen';
 import QRScannerScreen from '../../screens/QRscanner/QRScannerScreen';
 import MerchantScreen from '../merchant/MerchantScreen';
 import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
-import CameraQR from '../../components/QrScannerCamera/CameraQR';
 import Menu from '../menu/Menu';
-
+import OptionStackScreen from '../PaymentFlow/OptionStackScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
 const BottomTabNav = ({ navigation, route }) => {
   return (
-    <BottomTab.Navigator headerMode="none">
+    <BottomTab.Navigator headerMode='none'>
       <BottomTab.Screen
         name='Home'
         component={HomeScreen}
@@ -64,20 +62,13 @@ const BottomTabNav = ({ navigation, route }) => {
         }}
       />
 
-      {/* <BottomTab.Screen
-        name='QA'
-        component={CameraQR}
+      <BottomTab.Screen
+        name='Options'
+        component={OptionStackScreen}
         options={{
-          title: 'QA',
+          title: 'Options',
         }}
       />
-      <BottomTab.Screen
-        name='QRB'
-        component={CameraQR}
-        options={{
-          title: 'QRB',
-        }}
-      /> */}
     </BottomTab.Navigator>
   );
 };
