@@ -1,11 +1,13 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, Image,  ImageBackground  } from 'react-native';
+import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBackground, ActivityIndicator  } from 'react-native';
 import Constants from 'expo-constants';
 //import { Window_Width, Window_Height} from '../../utils/constants';
 //import Router from '../navigation/Router';
 import BottomTabNav from '../navigation/BottomTabNav';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { render } from 'react-dom';
+import ApiCallerQR from './Assets/PostApiCall';
 
 
 
@@ -13,6 +15,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default function CustomerMerchantScreen({ navigation }) {
+
+  
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -34,8 +38,14 @@ export default function CustomerMerchantScreen({ navigation }) {
                 
                 
                 </ImageBackground>
-                </TouchableOpacity> 
-            </View>
+                </TouchableOpacity>
+                {/* <ApiCallerQR/>  */}
+                <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL('https://api.qr-code-generator.com/v1/create/')}>
+  Google
+</Text> 
+
+            </View> 
             
             </View>
             <View  style={styles.footer}>

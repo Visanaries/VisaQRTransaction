@@ -9,7 +9,9 @@ import MerchantScreen from '../merchant/MerchantScreen';
 import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import Menu from '../menu/Menu';
+import ApiCallerQR from '../QRscanner/Assets/PostApiCall';
 import OptionStackScreen from '../PaymentFlow/OptionStackScreen';
+
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -61,7 +63,21 @@ const BottomTabNav = ({ navigation, route }) => {
           title: 'QR',
         }}
       />
+{/* <BottomTab.Screen
+        name='QR'
+        component={ApiCallerQR}
+        options={{
+          title: 'QR',
+        }}
+      /> */}
 
+      {/* <BottomTab.Screen
+        name='QA'
+        component={CameraQR}
+        options={{
+          title: 'QA',
+        }}
+      />
       <BottomTab.Screen
         name='Options'
         component={OptionStackScreen}
