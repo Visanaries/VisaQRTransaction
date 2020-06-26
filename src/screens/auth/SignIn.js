@@ -25,6 +25,7 @@ const SignIn = ({ navigation }) => {
   //Fade Animation
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnimation = useRef(new Animated.Value(0)).current;
+  const lineAnimation = useRef(new Animated.Value(0)).current;
   React.useEffect(() => 
   {
     Animated.timing(
@@ -39,7 +40,15 @@ const SignIn = ({ navigation }) => {
       slideAnimation,
       {
         toValue: 1,
-        duration: 2000,
+        duration: 2100,
+      }
+    ).start();
+
+    Animated.timing(
+      lineAnimation,
+      {
+        toValue: 1,
+        duration: 750,
       }
     ).start();
   }, [])
@@ -52,13 +61,14 @@ const SignIn = ({ navigation }) => {
         <Image style = {styles.visaTouchlessLogo} source = {require("../../image_resources/VisaTouchlessLogo_Combined.png")}/>
       </Animated.View>
 
+      {/* Text Logo */}
+      <View style = {styles.logoView}>
+        <Image style = {styles.visaWordLogo} source = {require("../../image_resources/VisaWordLogo.png")} />
+        <Text style = {styles.visaTouchlessText}>Touchless</Text>
+      </View>
 
-
+      {/* Sign In */}
       <View style = {styles.signInView}>
-        <View style = {styles.logoView}>
-          <Image style = {styles.visaWordLogo} source = {require("../../image_resources/VisaWordLogo.png")} />
-          <Text style = {styles.visaTouchlessText}>Touchless</Text>
-        </View>
         <TextInput style = {styles.textInput}
           placeholder='Username'
           value={username}
@@ -73,16 +83,30 @@ const SignIn = ({ navigation }) => {
         <TouchableOpacity style = {styles.signUpButton} onPress={() => signIn({ username, password })}>
           <Text style = {styles.signUpText}>SIGN IN</Text>
         </TouchableOpacity>
-
-        <View style = {styles.extraOptionsView}>
-          <Button title = "Create Account" onPress={() => navigation.navigate('SignUp')}></Button>
-          <Button title = "Forgot Password?" ></Button>
-        </View>
-
-        <View style = {styles.userView}>
-        </View>
-
       </View>
+
+      {/* Sign In - Extra Options */}
+      <View style = {styles.extraOptionsView}>
+        <Button title = "Create Account" onPress={() => navigation.navigate('SignUp')}></Button>
+        <Button title = "Forgot Password?" ></Button>
+      </View>
+
+      {/* User Selection - Cardholder/Merchant */}
+      {/* <View style = {styles.userView}>
+        <TouchableOpacity style = {styles.userButton} >
+          <Text style = {styles.userSelectionText}>Cardholder</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.userButton}>
+          <Text style = {styles.userSelectionText}>Merchant</Text>
+        </TouchableOpacity>
+      </View> */}
+
+      {/* Design Lines */}
+      {/* 
+      <Animated.View style = {{ borderBottomColor: "#1A1F71", borderBottomWidth: 10, marginTop: 80, marginBottom: 5, transform: [{ translateX: lineAnimation.interpolate({ inputRange: [0, 1], outputRange: [-500, 0] })}],}}/>
+      <Animated.View style = {{ borderBottomColor: "#F7B600", borderBottomWidth: 10, marginTop: 5, marginBottom: 10, transform: [{ translateX: lineAnimation.interpolate({ inputRange: [0, 1], outputRange: [-500, 0] })}],}}/>
+      */}
+
     </ScreenContainer>
   );
 };
@@ -92,18 +116,19 @@ const styles = StyleSheet.create(
   container: 
   {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-  },
-  signInView:
-  {
   },
   logoView:
   {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 70,
+    marginBottom: 100,
+  },
+  signInView:
+  {
   },
   extraOptionsView:
   {
@@ -115,7 +140,12 @@ const styles = StyleSheet.create(
   {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    //justifyContent: "flex-end",
+    backgroundColor: "#1A1F71",
+    marginTop: 80,
+    paddingTop: 20,
+    paddingBottom: 90,
   },
   textInput: 
   {
@@ -143,6 +173,29 @@ const styles = StyleSheet.create(
     shadowRadius: 2,                          // iPhone
     elevation: 2,                             //Android
   },
+  userButton:
+  {
+    //flexDirection: "column",
+    //justifyContent: "flex-end",
+    //alignSelf: "flex-end",
+    backgroundColor: "#2A2F91",
+    //margin: 20,
+    //marginTop: 80,
+    alignItems: "center",
+    borderRadius: 10,
+    shadowColor: 'rgba(0,0,0, .5)',           // iPhone
+    shadowOffset: { height: 2, width: 2 },    // iPhone
+    shadowOpacity: 1,                         // iPhone
+    shadowRadius: 2,                          // iPhone
+    elevation: 2,                             //Android
+    width: 150,
+  },
+  userSelectionText:
+  {
+    color: "#FFFFFF",
+    padding: 10,
+    fontSize: 20,
+  }, 
   signUpText:
   {
     color: "#FFFFFF",
@@ -155,7 +208,7 @@ const styles = StyleSheet.create(
     fontSize: 50,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#1a1F71"
+    color: "#1A1F71"
   },
   visaWordLogo:
   {
