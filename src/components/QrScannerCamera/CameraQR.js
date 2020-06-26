@@ -19,15 +19,8 @@ export default function CameraQR() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    //console.log(data);
-    // var data1= data;
-    //this.setState({data:data});
-    //let dataa = this.props.data;
-  //  Linking.openURL({data})
     setData(data)
   };
-  //var { data } = this.state
-  //console.log(data);
 
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;

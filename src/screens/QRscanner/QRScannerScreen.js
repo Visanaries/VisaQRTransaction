@@ -39,7 +39,7 @@ export default function CustomerMerchantScreen({ navigation }) {
                 
                 </ImageBackground>
                 </TouchableOpacity>
-                {/* <ApiCallerQR/>  */}
+                <ApiCallerQR/> 
                 <Text style={{color: 'blue'}}
       onPress={() => Linking.openURL('https://api.qr-code-generator.com/v1/create/')}>
   Google
