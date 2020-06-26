@@ -7,7 +7,6 @@ import BottomTabNav from '../navigation/BottomTabNav';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { render } from 'react-dom';
-import ApiCallerQR from './Assets/PostApiCall';
 
 
 
