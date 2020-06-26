@@ -7,7 +7,7 @@ import BottomTabNav from '../navigation/BottomTabNav';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { render } from 'react-dom';
-import ApiCallerQR from './Assets/ApiCallerQR';
+import ApiCallerQR from './Assets/PostApiCall';
 
 
 
@@ -39,7 +39,7 @@ export default function CustomerMerchantScreen({ navigation }) {
                 
                 </ImageBackground>
                 </TouchableOpacity>
-                <ApiCallerQR/> 
+                {/* <ApiCallerQR/>  */}
                 <Text style={{color: 'blue'}}
       onPress={() => Linking.openURL('https://api.qr-code-generator.com/v1/create/')}>
   Google
