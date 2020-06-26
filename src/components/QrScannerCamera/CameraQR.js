@@ -51,7 +51,7 @@ export default function CameraQR({ navigation }) {
         style={StyleSheet.absoluteFillObject}
          
       />
-      <Button title={'Go Back'} onPress={() => navigation.navigate('QRScannerScreen')}/>
+      <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
       <Button title={'Tap to Follow Scanned Link'} onPress={() => Linking.openURL(data)}/>
       
       {scanned && (
