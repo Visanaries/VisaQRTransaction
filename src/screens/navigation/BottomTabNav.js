@@ -12,6 +12,7 @@ import Menu from '../menu/Menu';
 import OptionStackScreen from '../PaymentFlow/OptionStackScreen';
 import Options from '../PaymentFlow/Payment';
 
+
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
@@ -62,8 +63,16 @@ const BottomTabNav = ({ navigation, route }) => {
           title: 'QR',
         }}
       />
-{/* 
-      <BottomTab.Screen
+
+
+       {/* <BottomTab.Screen
+        name='QA'
+        component={CameraQR}
+        options={{
+          title: 'QA',
+        }}
+      /> */}
+      {/* <BottomTab.Screen
         name='Options'
         component={Options}
         options={{
