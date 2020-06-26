@@ -44,13 +44,13 @@ const SignIn = ({ navigation }) => {
       }
     ).start();
 
-    Animated.timing(
-      lineAnimation,
-      {
-        toValue: 1,
-        duration: 750,
-      }
-    ).start();
+    // Animated.timing(
+    //   lineAnimation,
+    //   {
+    //     toValue: 1,
+    //     duration: 750,
+    //   }
+    // ).start();
   }, [])
 
   return (
@@ -101,11 +101,9 @@ const SignIn = ({ navigation }) => {
         </TouchableOpacity>
       </View> */}
 
-      {/* Design Lines */}
-      {/* 
-      <Animated.View style = {{ borderBottomColor: "#1A1F71", borderBottomWidth: 10, marginTop: 80, marginBottom: 5, transform: [{ translateX: lineAnimation.interpolate({ inputRange: [0, 1], outputRange: [-500, 0] })}],}}/>
-      <Animated.View style = {{ borderBottomColor: "#F7B600", borderBottomWidth: 10, marginTop: 5, marginBottom: 10, transform: [{ translateX: lineAnimation.interpolate({ inputRange: [0, 1], outputRange: [-500, 0] })}],}}/>
-      */}
+      {/* Design Lines */} 
+      <Animated.View style = {{ borderBottomColor: "#1A1F71", borderBottomWidth: 10, marginTop: 80, marginBottom: 5, opacity: fadeAnim, }}/>
+      <Animated.View style = {{ borderBottomColor: "#F7B600", borderBottomWidth: 10, marginTop: 5, marginBottom: 10, opacity: fadeAnim, }}/>
 
     </ScreenContainer>
   );
