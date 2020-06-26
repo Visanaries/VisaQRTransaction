@@ -16,9 +16,11 @@ import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScanner/CameraQR';
-
+import Checkout from './src/screens/checkout/Checkout';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
+import ModalScreen from './src/screens/PaymentFlow/PayScreen';
+import PayScreen from './src/screens/PaymentFlow/Options';
 
 function SplashScreen() {
   return (
@@ -31,6 +33,7 @@ function SplashScreen() {
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
+  console.disableYellowBox = true;
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -126,7 +129,6 @@ export default function App({ navigation }) {
                   }}
                 />
                 <Stack.Screen name='SignUp' component={SignUp} />
-                
               </>
             ) : (
               // User is signed in
@@ -134,8 +136,7 @@ export default function App({ navigation }) {
             )}
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
-
-            
+              <Stack.Screen name='Checkout' component={Checkout} />
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
@@ -146,7 +147,6 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  
     justifyContent: 'center',
     backgroundColor: '#fff',
   },
