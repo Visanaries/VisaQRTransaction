@@ -11,7 +11,7 @@ import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import CameraQR from '../../components/QrScannerCamera/CameraQR';
 import Menu from '../menu/Menu';
-import ApiCallerQR from '../QRscanner/Assets/PostApiCall';
+// import ApiCallerQR from '../QRscanner/Assets/PostApiCall';
 
 
 const BottomTab = createBottomTabNavigator();

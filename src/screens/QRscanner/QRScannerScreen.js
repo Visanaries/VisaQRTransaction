@@ -1,14 +1,13 @@
 import React from 'react';
-import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBackground, ActivityIndicator  } from 'react-native';
+import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBackground, ActivityIndicator, Button  } from 'react-native';
 import Constants from 'expo-constants';
 //import { Window_Width, Window_Height} from '../../utils/constants';
 //import Router from '../navigation/Router';
 import BottomTabNav from '../navigation/BottomTabNav';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { render } from 'react-dom';
-import ApiCallerQR from './Assets/PostApiCall';
-
+// import ApiCallerQR from './Assets/PostApiCall';
+import axios from "axios"
 
 
 
@@ -16,7 +15,20 @@ import ApiCallerQR from './Assets/PostApiCall';
 
 export default function CustomerMerchantScreen({ navigation }) {
 
-  
+  const generateQR =() => {
+    axios.get('http://api.qrserver.com/v1/create-qr-code/?data=https://youtu.be/QbphE5p3kx8&size=100x100 ')
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -44,13 +56,18 @@ export default function CustomerMerchantScreen({ navigation }) {
       onPress={() => Linking.openURL('https://api.qr-code-generator.com/v1/create/')}>
   Google
 </Text> 
+            <Button title={'testQR'} onPress={() => generateQR()}/>
+ 
+            <Image style={styles.logo} source={{uri: 'https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100'}}/>
 
             </View> 
             
+
             </View>
             <View  style={styles.footer}>
             <View style={styles.footerContent}>
                 <Text style={styles.name}>Scan For Payment</Text>
+                
             </View>
             </View>
         </View>
