@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Linking, TouchableOpacity } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-export default function CameraQR() {
+export default function CameraQR({ navigation }) {
   
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -51,6 +51,7 @@ export default function CameraQR() {
         style={StyleSheet.absoluteFillObject}
          
       />
+      <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
       <Button title={'Tap to Follow Scanned Link'} onPress={() => Linking.openURL(data)}/>
       
       {scanned && (
