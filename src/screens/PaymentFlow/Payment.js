@@ -9,31 +9,21 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-const Options = ({ navigation }) => {
+const Payment = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>Options</Text>
+          <Text style={styles.name}>PAY</Text>
         </View>
       </View>
-
-      <Button
-        style={styles.optionButtons}
-        title='PAY'
-        onPress={() =>
-          navigation.navigate('PayScreen', { screen: 'PayScreen' })
-        }
-      />
-      <Button
-        title='MENU'
-        onPress={() => navigation.navigate('Menu', { screen: 'Menu' })}
-      />
+      <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
+      <Button title='Cancel' onPress={() => navigation.goBack()} />
     </View>
   );
 };
 
-export default Options;
+export default Payment;
 
 const styles = StyleSheet.create({
   container: {
@@ -73,14 +63,21 @@ const styles = StyleSheet.create({
     height: 60,
   },
   name: {
-    paddingTop: 10,
     fontSize: 22,
     color: '#faaa13',
     fontWeight: '600',
   },
-  optionButtons: {
-    margin: 20,
-    backgroundColor: '#1aaf71',
+  numInput: {
+    backgroundColor: '#faaa09',
     color: 'white',
+    margin: 50,
+    padding: 10,
+    height:80,
+    //width: undefined,
+    alignItems: 'center',
+    //alignSelf: 'center',
+    fontSize: 50,
+    fontWeight: '700',
+    borderRadius: 15,
   },
 });

@@ -9,9 +9,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
-
-
-
 export default function CustomerMerchantScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>

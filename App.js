@@ -20,7 +20,7 @@ import Checkout from './src/screens/checkout/Checkout';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import ModalScreen from './src/screens/PaymentFlow/PayScreen';
-import PayScreen from './src/screens/PaymentFlow/Options';
+import Payment from './src/screens/PaymentFlow/Payment';
 
 function SplashScreen() {
   return (
@@ -137,6 +137,7 @@ export default function App({ navigation }) {
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
               <Stack.Screen name='Checkout' component={Checkout} />
+              <Stack.Screen name="Pay" component={Payment} />
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>

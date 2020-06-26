@@ -11,7 +11,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 const PayScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.name}>PAY</Text>
@@ -19,7 +19,7 @@ const PayScreen = ({ navigation }) => {
       </View>
       <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
       <Button title='Cancel' onPress={() => navigation.goBack()} />
-    </View>
+    </SafeAreaView>
   );
 };
 
