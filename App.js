@@ -17,7 +17,7 @@ import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScannerCamera/CameraQR';
 import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
-
+import ApplePayAPI from './src/components/ApplePayAPI/ApplePayAPI';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 
@@ -136,8 +136,8 @@ export default function App({ navigation }) {
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
               <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
-
-            
+              <Stack.Screen name='ApplePayAPI' component={ApplePayAPI} />
+             
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
