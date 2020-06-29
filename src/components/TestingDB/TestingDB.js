@@ -10,25 +10,26 @@ import axios from "axios"
 
 
 export default function TestingDB({ navigation }) {
-  const [data, setData] = useState("https://youtu.be/QbphE5p3kx8");
+  //const [data, setData] = useState("https://youtu.be/QbphE5p3kx8");
   //const [TextInput, setText] = useState([]);
   const [value, onChangeText] = React.useState('');
   const [valueArray, onChangeArray] = React.useState(['']);
+  
     
   const generateQR =() => {
-    axios.get( `http://api.qrserver.com/v1/create-qr-code/?data= ${data} &size=100x100` )
+    axios.get( 'http://127.0.0.1:5000/verifyCredentials/ttak/007' )
     .then(function (response) {
       // handle success
       console.log(response);
     })
-    .catch(function (error) {
+    .catch(function (error) { 
       // handle error
       console.log(error);
     })
     .then(function () {
       // always executed
     });
-    setData(data);
+    // setData(data);
   }
   // addTextInput = (key) => {
   //   // let TextInput = TextInput;
@@ -49,21 +50,21 @@ export default function TestingDB({ navigation }) {
           <View>
            <View style={styles.middlerContent}>
             
-            {/* <Button title={'testQR'} style = {styles.background_size} onPress={() => generateQR()}/> */}
+            <Button title={'testQR'} style = {styles.background_size} onPress={() => generateQR()}/>
  
-            <Image style = {styles.background_size} 
+            {/* <Image style = {styles.background_size} 
             source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${value}size=100x100`}}
             
-            />
-            <Button title={'Go to Georated QR'} onPress={() => Linking.openURL(value)}/>
+            /> */}
+            {/* <Button title={'Go to Georated QR'} onPress={() => Linking.openURL(value)}/> */}
             <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
-            <TextInput
+            {/* <TextInput
               style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => onChangeText(text)}
               value={value}
               
               
-      />
+      /> */}
      
            
             {/* <Button title='+' onPress={() => addTextInput(TextInput.length)} /> */}

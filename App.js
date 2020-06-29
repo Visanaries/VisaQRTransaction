@@ -21,6 +21,7 @@ import ApplePayAPI from './src/components/TestingDB/TestingDB';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import TestingDB from './src/components/TestingDB/TestingDB';
+import Axios from 'axios';
 
 function SplashScreen() {
   return (
@@ -33,6 +34,10 @@ function SplashScreen() {
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
+
+  // const [data, setData] = useState(" ");
+  // const [userList] = React.useState([]);
+
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -62,6 +67,19 @@ export default function App({ navigation }) {
       userToken: null,
     }
   );
+  
+  // async componentDidMount() {
+  //   try{
+  //     const response = await axios.get("link");
+  //     setData(prevState =>({
+  //       user: prevState.user = response.data
+
+  //     }));
+  //   }catch (error){
+  //     console.log(error);
+  //   }
+
+  // }
 
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
