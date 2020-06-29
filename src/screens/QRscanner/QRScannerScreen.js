@@ -39,6 +39,8 @@ export default function QRScannerScreen({ navigation }) {
                   </TouchableOpacity>
                   
               <Button title={'Go to Genorate Merchant QR'} onPress={() => navigation.navigate('MerchQRGen')}/>
+                  
+              <Button title={'Go testing DB'} onPress={() => navigation.navigate('TestingDB')}/>
               </View> 
             
 

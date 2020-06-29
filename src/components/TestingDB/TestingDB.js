@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios"
 
 
-export default function MerchQRGen({ navigation }) {
+export default function TestingDB({ navigation }) {
   const [data, setData] = useState("https://youtu.be/QbphE5p3kx8");
   //const [TextInput, setText] = useState([]);
   const [value, onChangeText] = React.useState('');
