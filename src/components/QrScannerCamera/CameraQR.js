@@ -8,7 +8,6 @@ export default function CameraQR({ navigation }) {
   const [scanned, setScanned] = useState(false);
   const [data, setData] = useState("");
 
-
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -18,7 +17,7 @@ export default function CameraQR({ navigation }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    alert(`This QR code belongs to ${data} payment services!`);
     //console.log(data);
     // var data1= data;
     //this.setState({data:data});
@@ -26,6 +25,7 @@ export default function CameraQR({ navigation }) {
   //  Linking.openURL({data})
     setData(data)
   };
+ 
   //var { data } = this.state
   //console.log(data);
 
@@ -52,7 +52,7 @@ export default function CameraQR({ navigation }) {
          
       />
       <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
-      <Button title={'Tap to Follow Scanned Link'} onPress={() => Linking.openURL(data)}/>
+       <Button title={'Tap to Follow Scanned Link'}onPress={() => navigation.goBack()}/> 
       
       {scanned && (
        
