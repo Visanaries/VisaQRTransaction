@@ -21,7 +21,7 @@ import ApplePayAPI from './src/components/TestingDB/TestingDB';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import TestingDB from './src/components/TestingDB/TestingDB';
-import Axios from 'axios';
+// import Axios from 'axios';
 
 function SplashScreen() {
   return (
@@ -110,7 +110,34 @@ export default function App({ navigation }) {
         // After getting token, we need to persist the token using `AsyncStorage`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        //GET request 
+    fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
+        method: 'GET' 
+        //Request Type 
+    })
+    .then((response) => response.json())
+    //If response is in json then in success
+    .then((responseJson) => {
+        //Success 
+        if (responseJson.Status == true)
+        {
+          //Go to next screen 
+          //alert("Successful");
+          dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        }
+        else
+        {
+          //Do not login and print message "Incorrect Username or Password"
+          alert("Incorrect Username or Password");
+        }
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+        //Error 
+        console.error(error);
+    });
+
+        //dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
       signOut: () => dispatch({ type: 'SIGN_OUT' }),
       signUp: async (data) => {

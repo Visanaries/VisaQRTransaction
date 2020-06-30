@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 // import BottomTabNav from '../navigation/BottomTabNav';
 
 //import { TouchableOpacity } from 'react-native-gesture-handler';
-import axios from "axios"
+// import axios from "axios"
 
 
 export default function TestingDB({ navigation }) {
@@ -41,7 +41,7 @@ export default function TestingDB({ navigation }) {
 
   const getDataUsingGet =()=> {
     //GET request 
-    fetch('http://10.0.0.226:5000/verifyCredentials/ttak/007', {
+    fetch('http://192.168.1.8:5000/verifyCredentials/ttak/007', {
         method: 'GET' 
         //Request Type 
     })

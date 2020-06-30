@@ -9,6 +9,7 @@ import {
   Image,
   Animated,
   ImageBackground,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import AuthContext from '../../constants/AuthContext';
@@ -53,37 +54,72 @@ const SignIn = ({ navigation }) => {
     // ).start();
   }, [])
 
+  const verifySignIn =()=> {
+    //GET request 
+    fetch(`http://192.168.1.8:5000/verifyCredentials/${username}/${password}`, {
+        method: 'GET' 
+        //Request Type 
+    })
+    .then((response) => response.json())
+    //If response is in json then in success
+    .then((responseJson) => {
+        //Success 
+        if (responseJson.Status == true)
+        {
+          //Go to next screen 
+          alert("Successful");
+        }
+        else
+        {
+          //Do not login and print message "Incorrect Username or Password"
+          alert("Unsuccessful");
+        }
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+        //Error 
+        //alert(JSON.stringify(error));
+        console.error(error);
+    });
+  }
+
+
   return (
     <ScreenContainer style = {styles.container}>
 
-      {/* Animated Logo */}
-      <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnimation.interpolate({ inputRange: [0, 1], outputRange: [-350, 0] })}], }}>
-        <Image style = {styles.visaTouchlessLogo} source = {require("../../image_resources/VisaTouchlessLogo_Combined.png")}/>
-      </Animated.View>
+      <KeyboardAvoidingView behavior = "position">
 
-      {/* Text Logo */}
-      <View style = {styles.logoView}>
-        <Image style = {styles.visaWordLogo} source = {require("../../image_resources/VisaWordLogo.png")} />
-        <Text style = {styles.visaTouchlessText}>Touchless</Text>
-      </View>
+        {/* Animated Logo */}
+        <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnimation.interpolate({ inputRange: [0, 1], outputRange: [-350, 0] })}], }}>
+          <Image style = {styles.visaTouchlessLogo} source = {require("../../image_resources/VisaTouchlessLogo_Combined.png")}/>
+        </Animated.View>
 
-      {/* Sign In */}
-      <View style = {styles.signInView}>
-        <TextInput style = {styles.textInput}
-          placeholder='Username'
-          value={username}
-          onChangeText={setUsername}
-        />
-        <TextInput style = {styles.textInput}
-          placeholder='Password'
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        <TouchableOpacity style = {styles.signUpButton} onPress={() => signIn({ username, password })}>
-          <Text style = {styles.signUpText}>SIGN IN</Text>
-        </TouchableOpacity>
-      </View>
+        {/* Text Logo */}
+        <View style = {styles.logoView}>
+          <Image style = {styles.visaWordLogo} source = {require("../../image_resources/VisaWordLogo.png")} />
+          <Text style = {styles.visaTouchlessText}>Touchless</Text>
+        </View>
+
+        {/* Sign In */}
+        <View style = {styles.signInView}>
+          <TextInput style = {styles.textInput}
+            placeholder='Username'
+            value={username}
+            onChangeText={setUsername}
+          />
+          <TextInput style = {styles.textInput}
+            placeholder='Password'
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <TouchableOpacity style = {styles.signUpButton} onPress={() => signIn({ username, password })}>
+          {/* <TouchableOpacity style = {styles.signUpButton} onPress={() => verifySignIn()}> */}
+            <Text style = {styles.signUpText}>SIGN IN</Text>
+          </TouchableOpacity>
+        </View>
+
+      </KeyboardAvoidingView>
 
       {/* Sign In - Extra Options */}
       <View style = {styles.extraOptionsView}>
