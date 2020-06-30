@@ -16,12 +16,12 @@ import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScannerCamera/CameraQR';
-import Checkout from './src/screens/checkout/Checkout';
-
+import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
+import ApplePayAPI from './src/components/TestingDB/TestingDB';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
-import ModalScreen from './src/screens/PaymentFlow/PayScreen';
-import Payment from './src/screens/PaymentFlow/Payment';
+import TestingDB from './src/components/TestingDB/TestingDB';
+import Axios from 'axios';
 
 function SplashScreen() {
   return (
@@ -34,7 +34,10 @@ function SplashScreen() {
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
-  console.disableYellowBox = true;
+
+  // const [data, setData] = useState(" ");
+  // const [userList] = React.useState([]);
+
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -64,6 +67,19 @@ export default function App({ navigation }) {
       userToken: null,
     }
   );
+  
+  // async componentDidMount() {
+  //   try{
+  //     const response = await axios.get("link");
+  //     setData(prevState =>({
+  //       user: prevState.user = response.data
+
+  //     }));
+  //   }catch (error){
+  //     console.log(error);
+  //   }
+
+  // }
 
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
@@ -130,6 +146,7 @@ export default function App({ navigation }) {
                   }}
                 />
                 <Stack.Screen name='SignUp' component={SignUp} />
+                
               </>
             ) : (
               // User is signed in
@@ -137,8 +154,9 @@ export default function App({ navigation }) {
             )}
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
-              <Stack.Screen name='Checkout' component={Checkout} />
-              <Stack.Screen name="Pay" component={Payment} />
+              <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
+              <Stack.Screen name='TestingDB' component={TestingDB} />
+             
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
@@ -149,6 +167,7 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  
     justifyContent: 'center',
     backgroundColor: '#fff',
   },

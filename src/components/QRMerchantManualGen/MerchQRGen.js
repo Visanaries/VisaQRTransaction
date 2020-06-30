@@ -1,56 +1,88 @@
-import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBackground, ActivityIndicator, Button  } from 'react-native';
+import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBackground, ActivityIndicator, Button, TextInput  } from 'react-native';
 import Constants from 'expo-constants';
 import React, { useState, useEffect } from 'react';
 //import { Window_Width, Window_Height} from '../../utils/constants';
 //import Router from '../navigation/Router';
 // import BottomTabNav from '../navigation/BottomTabNav';
 
-import { TouchableOpacity } from 'react-native-gesture-handler';
-// import ApiCallerQR from './Assets/PostApiCall';
-//import axios from "axios"
+//import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from "axios"
 
 
+export default function MerchQRGen({ navigation }) {
+  const [data, setData] = useState("https://youtu.be/QbphE5p3kx8");
+  //const [TextInput, setText] = useState([]);
+  const [value, onChangeText] = React.useState('');
+  const [valueArray, onChangeArray] = React.useState(['']);
+    
+  const generateQR =() => {
+    axios.get( `http://api.qrserver.com/v1/create-qr-code/?data= ${data} &size=100x100` )
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+    setData(data);
+  }
+  // addTextInput = (key) => {
+  //   // let TextInput = TextInput;
+  //   TextInput.push(<TextInput key={key} />);
+  //   setText(TextInput);
+  //   console.log(TextInput);
+  // }
 
-
-
-export default function QRScannerScreen({ navigation }) {
-  
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <View style={styles.header}>
             <View style={styles.headerContent}>
-                <Text style={styles.name}>Scan For Payment</Text>
+                <Text style={styles.name}>Genorate a Merchant QR</Text>
              </View>
           
           </View>
           <View>
-            <View style={styles.middlerContent}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('CameraQR')}
-              >
-            <ImageBackground 
-                  source={{uri: 'https://www.dummies.com/wp-content/uploads/324172.image0.jpg'}}
-                  style = {styles.background_size}
-                  >
-                  
-                  
-                  </ImageBackground>
-                  </TouchableOpacity>
-                  
-              <Button title={'Go to Genorate Merchant QR'} onPress={() => navigation.navigate('MerchQRGen')}/>
-                  
-              <Button title={'Go testing DB'} onPress={() => navigation.navigate('TestingDB')}/>
-              </View> 
+           <View style={styles.middlerContent}>
+            
+            {/* <Button title={'testQR'} style = {styles.background_size} onPress={() => generateQR()}/> */}
+ 
+            <Image style = {styles.background_size} 
+            source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${value}size=100x100`}}
+            
+            />
+            <Button title={'Go to Georated QR'} onPress={() => Linking.openURL(value)}/>
+            <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
+            <TextInput
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+              onChangeText={text => onChangeText(text)}
+              value={value}
+              
+              
+      />
+     
+           
+            {/* <Button title='+' onPress={() => addTextInput(TextInput.length)} /> */}
+            
+        {/* {TextInput.map((value, index) => {
+          return value */}
+        {/* })} */}
+            </View> 
+            {console.log(value)}
+
             
 
             </View>
-              <View  style={styles.footer}>
-              <View style={styles.footerContent}>
-                  <Text style={styles.name}>Scan For Payment</Text>
-                  
-              </View>
-              </View>
+            <View  style={styles.footer}>
+            <View style={styles.footerContent}>
+                <Text style={styles.name}>Scan For Payment</Text>
+                
+            </View>
+            </View>
         </View>
 
 
