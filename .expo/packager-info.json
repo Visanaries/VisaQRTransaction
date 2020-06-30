@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 2988,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPid": 24668,
+  "expoServerNgrokUrl": "https://ig-jqc.anonymous.visaqrtransaction.exp.direct",
+  "packagerNgrokUrl": "https://packager.ig-jqc.anonymous.visaqrtransaction.exp.direct",
+  "ngrokPid": 18324,
   "webpackServerPort": null
 }

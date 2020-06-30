@@ -16,27 +16,49 @@ export default function TestingDB({ navigation }) {
   const [valueArray, onChangeArray] = React.useState(['']);
   
     
-  const generateQR =() => {
-    axios.get( 'http://127.0.0.1:5000/verifyCredentials/ttak/007' )
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) { 
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-    // setData(data);
-  }
-  // addTextInput = (key) => {
-  //   // let TextInput = TextInput;
-  //   TextInput.push(<TextInput key={key} />);
-  //   setText(TextInput);
-  //   console.log(TextInput);
+  // const generateQR =() => {
+  //   axios.get( 'http://127.0.0.1:5000/' ) 
+  //   .then(function (response) {
+  //     // handle success
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) { 
+  //     // handle error
+  //     console.log(error);
+  //   })
+  //   .then(function () { 
+  //     // always executed
+  //   });
+  //   //console.log(response);
+  //   // setData(data);
   // }
+  // // addTextInput = (key) => {
+  // //   // let TextInput = TextInput;
+  // //   TextInput.push(<TextInput key={key} />);
+  // //   setText(TextInput);
+  // //   console.log(TextInput);
+  // // }
+
+  const getDataUsingGet =()=> {
+    //GET request 
+    fetch('http://10.0.0.226:5000/verifyCredentials/ttak/007', {
+        method: 'GET' 
+        //Request Type 
+    })
+    .then((response) => response.json())
+    //If response is in json then in success
+    .then((responseJson) => {
+        //Success 
+        alert(JSON.stringify(responseJson));
+        console.log(responseJson);
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+        //Error 
+        alert(JSON.stringify(error));
+        console.error(error);
+    });
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -50,7 +72,7 @@ export default function TestingDB({ navigation }) {
           <View>
            <View style={styles.middlerContent}>
             
-            <Button title={'testQR'} style = {styles.background_size} onPress={() => generateQR()}/>
+            <Button title={'testQR'} style = {styles.background_size} onPress={() => getDataUsingGet()}/>
  
             {/* <Image style = {styles.background_size} 
             source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${value}size=100x100`}}
