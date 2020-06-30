@@ -17,10 +17,10 @@ import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScannerCamera/CameraQR';
 import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
-import ApplePayAPI from './src/components/TestingDB/TestingDB';
+// import ApplePayAPI from './src/components/TestingDB/TestingDB';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
-import TestingDB from './src/components/TestingDB/TestingDB';
+// import TestingDB from './src/components/TestingDB/TestingDB';
 // import Axios from 'axios';
 
 function SplashScreen() {
@@ -30,13 +30,17 @@ function SplashScreen() {
     </View>
   );
 }
-
+global.username= ''
+global.password= ''
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
 
   // const [data, setData] = useState(" ");
   // const [userList] = React.useState([]);
+  // [username,setUsername] = React.useState('');
+  //var [password,setPassword] = React.useState('');
+  
 
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
@@ -118,7 +122,7 @@ export default function App({ navigation }) {
         else
         {
           //GET request 
-          fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -126,11 +130,18 @@ export default function App({ navigation }) {
           //If response is in json then in success
           .then((responseJson) => {
               //Success 
+              // setUsername(data.username)
+              //   setPassword(data.password)
+                // return username, password ;
               if (responseJson.Status)
               {
                 //Go to next screen 
                 //alert("Successful");
+                global.username = data.username
+                global.password = data.password
                 dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+                console.log(global.username)
+                console.log(global.password)
               }
               else
               {
@@ -159,7 +170,7 @@ export default function App({ navigation }) {
     }),
     []
   );
-
+  
   return (
     <View style={styles.container}>
       <AuthContext.Provider value={authContext}>
@@ -190,13 +201,14 @@ export default function App({ navigation }) {
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
               <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
-              <Stack.Screen name='TestingDB' component={TestingDB} />
+              {/* <Stack.Screen name='TestingDB' component={TestingDB} /> */}
              
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
     </View>
   );
+  
 }
 
 const styles = StyleSheet.create({

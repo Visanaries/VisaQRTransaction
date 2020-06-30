@@ -1,6 +1,7 @@
 import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBackground, ActivityIndicator, Button, TextInput  } from 'react-native';
 import Constants from 'expo-constants';
 import React, { useState, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 //import { Window_Width, Window_Height} from '../../utils/constants';
 //import Router from '../navigation/Router';
 // import BottomTabNav from '../navigation/BottomTabNav';
@@ -9,11 +10,9 @@ import React, { useState, useEffect } from 'react';
 // import axios from "axios"
 
 
-export default function TestingDB({ navigation }) {
-  //const [data, setData] = useState("https://youtu.be/QbphE5p3kx8");
-  //const [TextInput, setText] = useState([]);
-  const [value, onChangeText] = React.useState('');
-  const [valueArray, onChangeArray] = React.useState(['']);
+export default function CustomerQRGenorator() {
+  // const [value, onChangeText] = React.useState('');
+  // const [valueArray, onChangeArray] = React.useState(['']);
   
     
   // const generateQR =() => {
@@ -38,48 +37,56 @@ export default function TestingDB({ navigation }) {
   // //   setText(TextInput);
   // //   console.log(TextInput);
   // // }
-
-  const getDataUsingGet =()=> {
+  // const [UserId, setId] = React.useState('');
+   
+    const getDataUsingGet =()=> {
     //GET request 
-    fetch('http://192.168.1.8:5000/verifyCredentials/ttak/007', {
-        method: 'GET' 
-        //Request Type 
-    })
-    .then((response) => response.json())
-    //If response is in json then in success
-    .then((responseJson) => {
-        //Success 
-        alert(JSON.stringify(responseJson));
-        console.log(responseJson);
-    })
-    //If response is not in json then in error
-    .catch((error) => {
-        //Error 
-        alert(JSON.stringify(error));
-        console.error(error);
-    });
-  }
+    // fetch("http://10.0.0.226:5000/verifyCredentials/" + username + "/" + password, {
+    //     method: 'GET' 
+    //     //Request Type 
+    // })
+    // .then((response) => response.json())
+    // //If response is in json then in success
+    // .then((responseJson) => {
+    //     //Success 
+    //     console.log(username);
+    //     alert(JSON.stringify(responseJson.Username));
+    //     setId(responseJson.Username)
+    // })
+    // //If response is not in json then in error
+    // .catch((error) => {
+    //     //Error 
+    //     alert(JSON.stringify(error));
+    //     console.error(error);
+    // });
+     alert(global.username)
+    // alert(global.password)
+       
+  } 
 
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <View style={styles.header}>
-            <View style={styles.headerContent}>
-                <Text style={styles.name}>Genorate a Merchant QR</Text>
-             </View>
-          
-          </View>
+        
           <View>
            <View style={styles.middlerContent}>
-            
-            <Button title={'testQR'} style = {styles.background_size} onPress={() => getDataUsingGet()}/>
+             <TouchableOpacity
+             onPress={() => getDataUsingGet()}
+             > 
+               
+           <Image style = {styles.background_size}   
+            source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${global.username}size=100x100`}}
+            />
+             {/* <Text>{global.username} {global.password}</Text>  */}
+            </TouchableOpacity>
+            {/* <Button title={'testQR'} style = {styles.background_size} onPress={() => getDataUsingGet()}/> */}
  
             {/* <Image style = {styles.background_size} 
             source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${value}size=100x100`}}
             
             /> */}
             {/* <Button title={'Go to Georated QR'} onPress={() => Linking.openURL(value)}/> */}
-            <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
+            {/* <Button title={'Go Back'} onPress={() => navigation.goBack()}/> */}
             {/* <TextInput
               style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => onChangeText(text)}
@@ -95,16 +102,12 @@ export default function TestingDB({ navigation }) {
           return value */}
         {/* })} */}
             </View> 
-            {console.log(value)}
+            {/* {console.log(value)} */}
 
             
 
             </View>
             <View  style={styles.footer}>
-            <View style={styles.footerContent}>
-                <Text style={styles.name}>Scan For Payment</Text>
-                
-            </View>
             </View>
         </View>
 
@@ -116,6 +119,7 @@ export default function TestingDB({ navigation }) {
       /> */}
     </SafeAreaView>
   );
+  
 }
 // container: {
 //     width: Window_Width,

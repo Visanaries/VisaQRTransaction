@@ -14,18 +14,21 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default function QRScannerScreen({ navigation }) {
-  
+ 
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <View style={styles.header}>
             <View style={styles.headerContent}>
-                <Text style={styles.name}>Scan For Payment</Text>
+                <Text style={styles.name}>Press to start Scanning</Text>
              </View>
           
           </View>
           <View>
+            
             <View style={styles.middlerContent}>
+           
+  
               <TouchableOpacity
                 onPress={() => navigation.navigate('CameraQR')}
               >
@@ -39,15 +42,13 @@ export default function QRScannerScreen({ navigation }) {
                   </TouchableOpacity>
                   
               <Button title={'Go to Genorate Merchant QR'} onPress={() => navigation.navigate('MerchQRGen')}/>
-                  
-              <Button title={'Go testing DB'} onPress={() => navigation.navigate('TestingDB')}/>
               </View> 
             
 
             </View>
               <View  style={styles.footer}>
               <View style={styles.footerContent}>
-                  <Text style={styles.name}>Scan For Payment</Text>
+                  <Text style={styles.name}>LOL</Text>
                   
               </View>
               </View>
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
       },
       footer:{
         backgroundColor: "#1a1f71",
+        
       
       },
       headerContent:{
