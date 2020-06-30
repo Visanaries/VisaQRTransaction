@@ -6,6 +6,9 @@ import AuthContext from '../../constants/AuthContext';
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const { signUp } = React.useContext(AuthContext);
   return (
     <ScreenContainer style = {styles.container}>
@@ -16,19 +19,19 @@ const SignUp = ({ navigation }) => {
         </View>
         <TextInput style = {styles.textInput}
           placeholder='Email'
-          value={password}
-          onChangeText={setPassword}
+          value={email}
+          onChangeText={setEmail}
           secureTextEntry
         />
          <TextInput style = {styles.textInput}
           placeholder='First Name'
-          value={username}
-          onChangeText={setUsername}
+          value={firstName}
+          onChangeText={setFirstName}
         />
          <TextInput style = {styles.textInput}
           placeholder='Last Name'
-          value={username}
-          onChangeText={setUsername}
+          value={lastName}
+          onChangeText={setLastName}
         />
         <TextInput style = {styles.textInput}
           placeholder='Username'
