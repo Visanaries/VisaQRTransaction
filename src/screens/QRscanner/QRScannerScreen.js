@@ -3,11 +3,10 @@ import { SafeAreaView,Linking, View, FlatList, StyleSheet, Text, Image,  ImageBa
 import Constants from 'expo-constants';
 //import { Window_Width, Window_Height} from '../../utils/constants';
 //import Router from '../navigation/Router';
-import BottomTabNav from '../navigation/BottomTabNav';
+
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { render } from 'react-dom';
-import ApiCallerQR from './Assets/PostApiCall';
+
 
 
 
