@@ -1,16 +1,16 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {View, Image, Text, StyleSheet, TouchableOpacity, FlatList, Button} from 'react-native';
 import Constants from 'expo-constants';
 import ScreenContainer from '../../components/ScreenContainer';
 import { Window_Width, Window_Height} from '../../utils/constants';
 
 const Checkout = ({ route, navigation }) => {
-  const { Cart } = route.params;
+  var { Cart } = route.params;
   function CartElement({title, price, ing}) {
     return (
       <View style={{flexDirection:"row", justifyContent:"space-between", paddingTop: 5, paddingLeft: 5, paddingRight: 5}}>
-        <Text style={styles.BoldBody}>{title}</Text>
-        <Text style={styles.BoldBody}>{price}</Text>
+        <Text style={styles.Body}>{title}</Text>
+        <Text style={styles.Body}>${price}</Text>
       </View>
     );
   }
@@ -23,12 +23,16 @@ const Checkout = ({ route, navigation }) => {
   var total= tax+sum;
   global.totalcost =total;
   return (
-    <ScreenContainer style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
           <View style={styles.headerContent}>
               <Image style={styles.logo} source={{uri: 'http://logok.org/wp-content/uploads/2014/03/Visa-2014-logo-blue-880x660.png'}}/>
               <Text style={styles.name}>Checkout</Text>
           </View>
+      </View>
+      <View style={{flexDirection:"row", justifyContent:"space-between", paddingTop: 5, paddingLeft: 5, paddingRight: 5, borderBottomColor: 'black', borderBottomWidth: 3}}>
+        <Text style={styles.BoldBody}>Items</Text>
+        <Text style={styles.BoldBody}>Price</Text>
       </View>
       <FlatList
               data={Cart}
@@ -41,31 +45,34 @@ const Checkout = ({ route, navigation }) => {
               )}
               keyExtractor={item => item.id}
               />
-
-      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <Text style = {styles.BoldBody}>Sub-Total: {sum}</Text>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-end', borderTopColor: 'black', borderTopWidth: 3}}>
+        <Text style = {styles.BoldBody}>Sub-Total: ${sum.toFixed(2)}</Text>
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <Text style = {styles.BoldBody}>Tax: {tax}</Text>
+        <Text style = {styles.BoldBody}>Tax: ${tax.toFixed(2)}</Text>
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>  
-        <Text style = {styles.BoldBody}>Total: {global.totalcost}</Text>
+        <Text style = {styles.BoldBody}>Total: ${global.totalcost.toFixed(2)}</Text>
       </View>
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
-          style={styles.GreyButton}
-          onPress={() =>  {navigation.navigate('Menu')}}
-        >
-          <Text style={styles.textStyle}>Cancel</Text>
+      <TouchableOpacity  style={styles.GreyButton}>
+          <Button
+          color="#fff"
+          fontWeight="700"
+          title='Cancel'
+          onPress={() =>  {navigation.navigate('Menu', {Cart: []})}}
+       />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.GreenButton}
-          onPress={() => {navigation.navigate('Payment')}}
-          >
-          <Text style={styles.textStyle}>Confirm</Text>
+        <TouchableOpacity  style={styles.GreenButton}>
+          <Button
+          color="#fff"
+          fontWeight="700"
+          title='Confirm'
+          onPress={() =>  {navigation.navigate('Payment')}}
+       />
         </TouchableOpacity>
       </View>
-    </ScreenContainer>
+    </View>
   );
 }
 
@@ -107,21 +114,41 @@ const styles = StyleSheet.create({
   BoldBody: {
     color: "#000000",
     textAlign: "left",
+    fontWeight: "bold",
+    fontSize: 30,
+  },
+  checkoutText: {
+    color: "#000000",
+    textAlign: "left",
     fontSize: 20
   },
   GreyButton: {
     backgroundColor: "#999999", 
+    color: '#ffffff',
     flex: 1,
     borderColor: "grey",
     borderWidth: 1,
-    padding: 10
+    padding: 10,
+    marginTop: 10,
+    marginLeft: 10,
+    marginBottom: 20,
+    fontWeight: '700',
+    borderTopLeftRadius: 15,
+    borderBottomLeftRadius: 15,
   },
   GreenButton:{
-    backgroundColor: "#00e823", 
+    backgroundColor: "#00e853", 
+    color: '#ffffff',
     flex: 1,
     borderColor: "grey",
     borderWidth: 1,
-    padding: 10
+    padding: 10,
+    marginTop: 10,
+    marginRight: 10,
+    marginBottom: 20, 
+    fontWeight: '700',
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
   },
 });
 
