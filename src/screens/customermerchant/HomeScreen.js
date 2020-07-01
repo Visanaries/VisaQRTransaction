@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, FlatList, } from 'react-native';
 import AuthContext from '../../constants/AuthContext';
 import ScreenContainer from '../../components/ScreenContainer';
 import CustomerQRGenorator from '../../components/CustomerQR/CustomerQRGenorator';
+import { ListItem } from 'react-native-elements';
 const HomeScreen = () => {
   const { signOut } = React.useContext(AuthContext);
   const [funds, setFunds] = React.useState('');
@@ -23,7 +24,9 @@ const HomeScreen = () => {
     .catch((error) => {
         console.error(error);
     });
+  }, []);
 
+  React.useEffect(() => {
     //GET request 
     fetch(`http://192.168.1.8:5000/transactionHistory/${global.username}/${global.password}`, {
         method: 'GET' 
@@ -33,6 +36,8 @@ const HomeScreen = () => {
     .then((responseJson) => {
         //Get funds
         setTransactionHistory(responseJson.Transactions);
+        //alert(transactionHistory[0].amount);
+        //console.log(transactionHistory[0].amount);
     })
     //If response is not in json then in error
     .catch((error) => {
@@ -59,6 +64,16 @@ const HomeScreen = () => {
             <Text>Funds: {funds}</Text>
             {/* Transaction History */}
             <Text>Transaction History:</Text>
+            <FlatList
+              inverted
+              style={styles.feed}
+              data={transactionHistory}
+              renderItem={({ item, index }) => (
+                <Text>Name: {transactionHistory[index].name}; Amount: {transactionHistory[index].amount}</Text>
+              )}
+              keyExtractor={(item) => item.index}
+              showsVerticalScrollIndicator={false}
+            />
           </View>
 
           <View>
@@ -179,6 +194,10 @@ const styles = StyleSheet.create({
         padding: 13,
         fontSize: 25,
       }, 
+      feed:
+      {
+        backgroundColor: "#FFFFFF",
+      },
 });
 
 export default HomeScreen;
