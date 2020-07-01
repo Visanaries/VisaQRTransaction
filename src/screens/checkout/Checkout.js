@@ -5,7 +5,7 @@ import ScreenContainer from '../../components/ScreenContainer';
 import { Window_Width, Window_Height} from '../../utils/constants';
 
 const Checkout = ({ route, navigation }) => {
-  const { Cart } = route.params;
+  // const { Cart } = route.params;
   return (
     <ScreenContainer style={styles.container}>
       <View style={styles.header}>
@@ -14,7 +14,7 @@ const Checkout = ({ route, navigation }) => {
               <Text style={styles.name}>Checkout</Text>
           </View>
       </View>
-      <Text style={styles.Body}>{Cart}</Text>
+      {/* <Text style={styles.Body}>{Cart}</Text> */}
       <Text style = {styles.BoldBody}>Sub-Total: </Text>
       <Text style = {styles.BoldBody}>Tax:</Text>
       <Text style = {styles.BoldBody}>Total: </Text>
@@ -27,7 +27,7 @@ const Checkout = ({ route, navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.GreenButton}
-          onPress={() => {navigation.navigate('Pay')}}
+          onPress={() => {navigation.navigate('Payment')}}
           >
           <Text style={styles.textStyle}>Confirm</Text>
         </TouchableOpacity>
