@@ -1,11 +1,27 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Image, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import Constants from 'expo-constants';
 import ScreenContainer from '../../components/ScreenContainer';
 import { Window_Width, Window_Height} from '../../utils/constants';
 
 const Checkout = ({ route, navigation }) => {
-  // const { Cart } = route.params;
+  const { Cart } = route.params;
+  function CartElement({title, price, ing}) {
+    return (
+      <View style={{flexDirection:"row", justifyContent:"space-between", paddingTop: 5, paddingLeft: 5, paddingRight: 5}}>
+        <Text style={styles.BoldBody}>{title}</Text>
+        <Text style={styles.BoldBody}>{price}</Text>
+      </View>
+    );
+  }
+
+  var sum = Cart.reduce(function(prev, cur) {
+    return prev + cur.price;
+  }, 0);
+
+  var tax = sum * .0625;
+  var total= tax+sum;
+  global.totalcost =total;
   return (
     <ScreenContainer style={styles.container}>
       <View style={styles.header}>
@@ -14,10 +30,27 @@ const Checkout = ({ route, navigation }) => {
               <Text style={styles.name}>Checkout</Text>
           </View>
       </View>
-      {/* <Text style={styles.Body}>{Cart}</Text> */}
-      <Text style = {styles.BoldBody}>Sub-Total: </Text>
-      <Text style = {styles.BoldBody}>Tax:</Text>
-      <Text style = {styles.BoldBody}>Total: </Text>
+      <FlatList
+              data={Cart}
+              renderItem={({ item }) => (
+                <CartElement
+                title={item.title}
+                price={item.price}
+                ing={item.ing}
+                />
+              )}
+              keyExtractor={item => item.id}
+              />
+
+      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+        <Text style = {styles.BoldBody}>Sub-Total: {sum}</Text>
+      </View>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+        <Text style = {styles.BoldBody}>Tax: {tax}</Text>
+      </View>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>  
+        <Text style = {styles.BoldBody}>Total: {global.totalcost}</Text>
+      </View>
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           style={styles.GreyButton}
