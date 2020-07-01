@@ -111,7 +111,6 @@ export default function App({ navigation }) {
         } else {
           //GET request
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-<<<<<<< HEAD
           fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
@@ -120,22 +119,6 @@ export default function App({ navigation }) {
           //If response is in json then in success
           .then((responseJson) => {
               //Success 
-=======
-          fetch(
-            'http://192.168.1.27:5000/verifyCredentials/' +
-              data.username +
-              '/' +
-              data.password,
-            {
-              method: 'GET',
-              //Request Type
-            }
-          )
-            .then((response) => response.json())
-            //If response is in json then in success
-            .then((responseJson) => {
-              //Success
->>>>>>> 72778330f8ce66b00586dd3b8d81cac650d80103
               // setUsername(data.username)
               //   setPassword(data.password)
               // return username, password ;
@@ -173,14 +156,7 @@ export default function App({ navigation }) {
         // In the example, we'll use a dummy token
 
         //ERROR HANDLING - If there is an unfilled text input - prompt user to enter those fields
-        if (
-          !data.username ||
-          !data.password ||
-          !data.confirmPassword ||
-          !data.firstName ||
-          !data.lastName ||
-          !data.email
-        ) {
+        if (!data.username || !data.password || !data.confirmPassword || !data.firstName || !data.lastName || !data.email) {
           alert('Please enter all of the required information');
         }
         //ERROR HANDLING - If password and confirmPassword do not match
@@ -188,7 +164,6 @@ export default function App({ navigation }) {
           alert('The password fields do not match');
         } else {
           //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-<<<<<<< HEAD
           fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
@@ -197,28 +172,6 @@ export default function App({ navigation }) {
           //If response is in json then in success
           .then((responseJson) => {
               //Success 
-=======
-          fetch(
-            'http://10.0.0.226:5000/newUserAccount/' +
-              data.firstName +
-              '/' +
-              data.lastName +
-              '/' +
-              data.username +
-              '/' +
-              data.password +
-              '/' +
-              data.email,
-            {
-              method: 'GET',
-              //Request Type
-            }
-          )
-            .then((response) => response.json())
-            //If response is in json then in success
-            .then((responseJson) => {
-              //Success
->>>>>>> 72778330f8ce66b00586dd3b8d81cac650d80103
               // setUsername(data.username)
               //   setPassword(data.password)
               // return username, password ;
