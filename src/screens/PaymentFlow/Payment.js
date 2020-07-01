@@ -8,12 +8,15 @@ import {
   Image,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+ global.ammount = '2.00';
 
-function getMoviesFromApi() {
-  return fetch('/payMerchant/<string:amount>/<string:username>/<string:password>/<string:merchant>')
+function getPayment() {
+
+  return fetch(`http://10.0.0.226:5000//payMerchant/${global.ammount}/${global.username}/${global.password}/${global.QRname}`)
     .then((response) => response.json())
     .then((json) => {
-      return json.movies;
+      console.log( json.paymerchant);  
+      return json.paymerchant;
     })
     .catch((error) => {
       console.error(error);
@@ -29,7 +32,7 @@ const PayScreen = ({ navigation }) => {
         </View>
       </View>
       <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
-      <Button title='Pay' onPress={() => navigation.navigate('Payment')} />
+      <Button title='Pay' onPress={() => getPayment()} />
       <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
       <Button title='Cancel' onPress={() => navigation.goBack()} />
     </SafeAreaView>
