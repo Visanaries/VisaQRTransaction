@@ -10,18 +10,17 @@ import {
 import { Window_Width, Window_Height } from '../../utils/constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import PayScreen from './PayScreen';
-import Options from './Payment';
+import OptionsMenu from './OptionsMenu';
 import Menu from '../menu/Menu';
-
 
 const OptionStack = createStackNavigator();
 
-const OptionStackScreen = ({navigation}) => {
+const OptionStackScreen = ({ navigation }) => {
   return (
-    <OptionStack.Navigator headerMode="none">
-    {/* <OptionStack.Screen name="Pay" component={Options}/> */}
-     {/* <OptionStack.Screen name="PayScreen" component={PayScreen}/> 
-     <OptionStack.Screen name="Menu" component={Menu}/> */}
+    <OptionStack.Navigator headerMode='none'>
+      <OptionStack.Screen name='OptionsMenu' component={OptionsMenu} />
+      {/* <OptionStack.Screen name='PayScreen' component={PayScreen} /> */}
+      <OptionStack.Screen name='Menu' component={Menu} />
     </OptionStack.Navigator>
   );
 };

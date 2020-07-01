@@ -7,18 +7,29 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 const Payment = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>Paying {global.QRname}</Text>
+          <Text style={styles.name}>Options for {global.QRname}</Text>
         </View>
       </View>
-      <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
-      <Button title='Cancel' onPress={() => navigation.goBack()} />
+      <View style={styles.buttonOptions}>
+        <Button
+          style={styles.buttonOptions}
+          title='Pay'
+          onPress={() => navigation.navigate('PayScreen')}
+        />
+      </View>
+      <View style={styles.buttonOptions}>
+        <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
+      </View>
+      <View style={styles.cancelOption}>
+        <Button title='Cancel' onPress={() => navigation.goBack()} />
+      </View>
     </View>
   );
 };
@@ -72,12 +83,25 @@ const styles = StyleSheet.create({
     color: 'white',
     margin: 50,
     padding: 10,
-    height:80,
+    height: 80,
     //width: undefined,
     alignItems: 'center',
     //alignSelf: 'center',
     fontSize: 50,
     fontWeight: '700',
     borderRadius: 15,
+  },
+  buttonOptions: {
+    padding: 20,
+    backgroundColor: '#faaa13',
+    justifyContent: 'space-between',
+    borderRadius: 15,
+    margin: 20,
+    color: 'black',
+    fontWeight: '700',
+  },
+  cancelOption: {
+    backgroundColor: 'red',
+    margin: 30,
   },
 });

@@ -27,7 +27,7 @@ const Checkout = ({ route, navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.GreenButton}
-          onPress={() => {navigation.navigate('Payment')}}
+          onPress={() => {navigation.navigate('PayScreen')}}
           >
           <Text style={styles.textStyle}>Confirm</Text>
         </TouchableOpacity>

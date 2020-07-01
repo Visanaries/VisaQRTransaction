@@ -11,6 +11,7 @@ import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import CameraQR from '../../components/QrScannerCamera/CameraQR';
 import Menu from '../menu/Menu';
+import OptionStackScreen from '../PaymentFlow/OptionStackScreen';
 // import ApiCallerQR from '../QRscanner/Assets/PostApiCall';
 
 
@@ -62,6 +63,14 @@ const BottomTabNav = ({ navigation, route }) => {
         component={QRScannerScreen}
         options={{
           title: 'QR',
+        }}
+      />
+
+<BottomTab.Screen
+        name='Options'
+        component={OptionStackScreen}
+        options={{
+          title: 'Options',
         }}
       />
 
