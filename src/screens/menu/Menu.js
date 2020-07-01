@@ -9,7 +9,7 @@ const Items = [
   {
     id: 'bd743bea-c1b1-46c2-aed5-3ad53abb28ba',
     title: 'Hamburger',
-    price: "$8",
+    price: 8,
     inglist: [
       {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -32,7 +32,7 @@ const Items = [
   {
     id: '3ac68afc-b105-48d3-a4f8-fbd91aa97f63',
     title: 'Cheeseburger',
-    price: "$9",
+    price: 9,
     inglist: [
       {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -59,7 +59,7 @@ const Items = [
   {
     id: '58694a0f-3da1-881f-bd96-108571e29d72',
     title: 'French Fries',
-    price: "$3",
+    price: 3,
     inglist: [
       {
           id: '58694a0f-3da1-473f-bd96-143331e29d72',
@@ -70,7 +70,7 @@ const Items = [
   {
     id: 'bd74aaaa-c1b1-46c2-aed5-3ad53abb28ba',
     title: 'Salad',
-    price: "$5",
+    price: 5,
     inglist: [
       {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -99,11 +99,7 @@ const Items = [
 class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { Cart: '' };
-    this.addToCart = this.addToCart.bind(this);
-  }
-  addToCart = (Item) => {
-    self.setState({Cart: self.state.Cart.concat(Item)})
+    this.state = { Cart: [] };
   }
 render() {
   var self = this;
@@ -141,7 +137,7 @@ render() {
                 <TouchableOpacity
                 style={{ ...styles.openButton, backgroundColor: "#1a1f71"}}
                 onPress={() => {
-                  self.setState({Cart: self.state.Cart.concat(title, " ", price, "\n")})}
+                  self.setState({Cart: [...self.state.Cart, {id: id, title: title, price: price, ing: ""},]})}
                 }
                 >
                   <Text style={styles.textStyle}>Add To Cart</Text>
@@ -188,7 +184,6 @@ render() {
   <View style={styles.header}>
       <View style={styles.headerContent}>
         <TouchableOpacity onPress={() => this.props.navigate.navigation.goBack()}>
-          
           <ImageBackground style={styles.logo} source={{uri: 'http://logok.org/wp-content/uploads/2014/03/Visa-2014-logo-blue-880x660.png'}}/>
           </TouchableOpacity>
           <Text style={styles.name}>McDonald's</Text>
@@ -206,7 +201,7 @@ render() {
   )}
   keyExtractor={item => item.id}
   />
-  <Button style={{justifyContent: 'flex-end'}}title = "Checkout" onPress={() => this.props.navigation.navigate('Checkout')}></Button>
+  <Button style={{justifyContent: 'flex-end'}}title = "Checkout" onPress={() => this.props.navigation.navigate('Checkout', {Cart: this.state.Cart})}></Button>
   </ScreenContainer>
   );
     }

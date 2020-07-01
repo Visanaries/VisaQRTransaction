@@ -12,7 +12,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 function getPayment() {
 
-  return fetch(`http://10.0.0.226:5000//payMerchant/${global.ammount}/${global.username}/${global.password}/${global.QRname}`)
+  return fetch(`http://192.168.1.4:5000//payMerchant/${global.ammount}/${global.username}/${global.password}/${global.QRname}`)
     .then((response) => response.json())
     .then((json) => {
       console.log( json.paymerchant);  
