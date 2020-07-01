@@ -5,6 +5,40 @@ import ScreenContainer from '../../components/ScreenContainer';
 import CustomerQRGenorator from '../../components/CustomerQR/CustomerQRGenorator';
 const HomeScreen = () => {
   const { signOut } = React.useContext(AuthContext);
+  const [funds, setFunds] = React.useState('');
+  const [transactionHistory, setTransactionHistory] = React.useState('');
+
+  React.useEffect(() => {
+    //GET request 
+    fetch(`http://192.168.1.8:5000/funds/${global.username}/${global.password}`, {
+        method: 'GET' 
+        //Request Type 
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        //Get funds
+        setFunds(responseJson.Funds);
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+        console.error(error);
+    });
+
+    //GET request 
+    fetch(`http://192.168.1.8:5000/transactionHistory/${global.username}/${global.password}`, {
+        method: 'GET' 
+        //Request Type 
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        //Get funds
+        setTransactionHistory(responseJson.Transactions);
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+        console.error(error);
+    });
+  }, []);
 
   return (
       <ScreenContainer>
@@ -21,11 +55,18 @@ const HomeScreen = () => {
           </View>
 
           <View>
+            {/* Funds */}
+            <Text>Funds: {funds}</Text>
+            {/* Transaction History */}
+            <Text>Transaction History:</Text>
+          </View>
+
+          <View>
             <TouchableOpacity style = {styles.signOutButton} onPress={() => signOut()}>
               <Text style = {styles.signOutText}>SIGN OUT</Text>
             </TouchableOpacity>
           </View>
-          
+
         </View>
         
       </ScreenContainer>

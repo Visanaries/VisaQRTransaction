@@ -54,36 +54,6 @@ const SignIn = ({ navigation }) => {
     // ).start();
   }, [])
 
-  const verifySignIn =()=> {
-    //GET request 
-    fetch(`http://192.168.1.8:5000/verifyCredentials/${username}/${password}`, {
-        method: 'GET' 
-        //Request Type 
-    })
-    .then((response) => response.json())
-    //If response is in json then in success
-    .then((responseJson) => {
-        //Success 
-        if (responseJson.Status == true)
-        {
-          //Go to next screen 
-          alert("Successful");
-        }
-        else
-        {
-          //Do not login and print message "Incorrect Username or Password"
-          alert("Unsuccessful");
-        }
-    })
-    //If response is not in json then in error
-    .catch((error) => {
-        //Error 
-        //alert(JSON.stringify(error));
-        console.error(error);
-    });
-  }
-
-
   return (
     <ScreenContainer style = {styles.container}>
 
