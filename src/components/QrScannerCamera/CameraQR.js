@@ -7,7 +7,7 @@ export default function CameraQR({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [data, setData] = useState("");
-
+  
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -24,6 +24,8 @@ export default function CameraQR({ navigation }) {
     //let dataa = this.props.data;
   //  Linking.openURL({data})
     setData(data)
+    global.QRname = data;
+    console.log(global.QRname);
   };
  
   //var { data } = this.state
@@ -52,7 +54,7 @@ export default function CameraQR({ navigation }) {
          
       />
       <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
-       <Button title={'Tap to Follow Scanned Link'}onPress={() => navigation.goBack()}/> 
+       <Button title={`Tap to Follow Scanned Link to ${global.QRname}`}onPress={() => navigation.navigate('Menu')}/> 
       
       {scanned && (
        

@@ -14,7 +14,7 @@ const Payment = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>PAY</Text>
+          <Text style={styles.name}>Paying {global.QRname}</Text>
         </View>
       </View>
       <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>

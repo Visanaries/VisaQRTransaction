@@ -20,7 +20,7 @@ export default function QRScannerScreen({ navigation }) {
       <View>
         <View style={styles.header}>
             <View style={styles.headerContent}>
-                <Text style={styles.name}>Press to start Scanning</Text>
+                <Text style={styles.name}>Press to start Scanning {global.QRname}</Text>
              </View>
           
           </View>
@@ -31,6 +31,7 @@ export default function QRScannerScreen({ navigation }) {
   
               <TouchableOpacity
                 onPress={() => navigation.navigate('CameraQR')}
+                
               >
             <ImageBackground 
                   source={{uri: 'https://www.dummies.com/wp-content/uploads/324172.image0.jpg'}}
@@ -40,7 +41,7 @@ export default function QRScannerScreen({ navigation }) {
                   
                   </ImageBackground>
                   </TouchableOpacity>
-                  
+                 
               <Button title={'Go to Genorate Merchant QR'} onPress={() => navigation.navigate('MerchQRGen')}/>
               </View> 
             
