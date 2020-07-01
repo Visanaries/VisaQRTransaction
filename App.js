@@ -111,7 +111,7 @@ export default function App({ navigation }) {
         } else {
           //GET request
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://192.168.1.27:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })

@@ -109,42 +109,40 @@ import Constants from 'expo-constants';
 class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       Cart: [],
-      Items: [] 
+      Items: [],
     };
   }
 
   componentDidMount() {
-    //GET request 
-    fetch(`http://10.0.0.226:5000/menuItems/${global.QRname}`, {
-    // fetch(`http://10.0.0.226:5000/menuItems/McDonald's`, {
-        method: 'GET' 
-        //Request Type 
+    //GET request
+    fetch(`http://192.168.1.27:5000/menuItems/${global.QRname}`, {
+      // fetch(`http://10.0.0.226:5000/menuItems/McDonald's`, {
+      method: 'GET',
+      //Request Type
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         //Get funds
         //this.setState(state => ({Items: responseJson.Items}));
-        this.setState({Items: responseJson.Items});
-    })
-    //If response is not in json then in error
-    .catch((error) => {
+        this.setState({ Items: responseJson.Items });
+      })
+      //If response is not in json then in error
+      .catch((error) => {
         console.error(error);
-    });
+      });
   }
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
 
   render() {
-
     // const [Items, setItems] = React.useState('');
 
     // React.useEffect(() => {
-    //   //GET request 
+    //   //GET request
     //   fetch(`http://192.168.1.8:5000/menuItems/${global.QRname}`, {
-    //       method: 'GET' 
-    //       //Request Type 
+    //       method: 'GET'
+    //       //Request Type
     //   })
     //   .then((response) => response.json())
     //   .then((responseJson) => {
@@ -271,19 +269,18 @@ class Menu extends React.Component {
           )}
           keyExtractor={(item) => item.id}
         />
-        <TouchableOpacity  style={styles.checkout}>
-           <Button
-        color="#fff"
-        fontWeight="700"
-          title='Checkout'
-          onPress={() =>
-            this.props.navigation.navigate('Checkout', {
-              Cart: this.state.Cart,
-            })
-          }
-       />
+        <TouchableOpacity style={styles.checkout}>
+          <Button
+            color='#fff'
+            fontWeight='700'
+            title='Checkout'
+            onPress={() =>
+              this.props.navigation.navigate('Checkout', {
+                Cart: this.state.Cart,
+              })
+            }
+          />
         </TouchableOpacity>
-       
       </View>
     );
   }
@@ -417,7 +414,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: '700',
     borderRadius: 15,
-  }
+  },
 });
 
 export default Menu;
