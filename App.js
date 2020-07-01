@@ -18,7 +18,7 @@ import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScannerCamera/CameraQR';
 import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
 import Checkout from './src/screens/checkout/Checkout';
-import PayScreen from './src/screens/PaymentFlow/PayScreen'
+import PayScreen from './src/screens/PaymentFlow/PayScreen';
 // import ApplePayAPI from './src/components/TestingDB/TestingDB';
 import Payment from './src/screens/PaymentFlow/Payment';
 import OptionStackScreen from './src/screens/PaymentFlow/OptionStackScreen';
@@ -34,19 +34,17 @@ function SplashScreen() {
     </View>
   );
 }
-global.username= ''
-global.password= ''
-global.QRname = ''
+global.username = '';
+global.password = '';
+global.QRname = '';
 global.totalcost = '';
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
-
   // const [data, setData] = useState(" ");
   // const [userList] = React.useState([]);
   // [username,setUsername] = React.useState('');
   //var [password,setPassword] = React.useState('');
-  
 
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
@@ -108,14 +106,12 @@ export default function App({ navigation }) {
         // In the example, we'll use a dummy token
 
         //ERROR HANDLING - If no username or password entered - prompt user to enter those fields
-        if ((!data.username) || (!data.password))
-        {
-          alert("Please enter your username and password");
-        }
-        else
-        {
-          //GET request 
+        if (!data.username || !data.password) {
+          alert('Please enter your username and password');
+        } else {
+          //GET request
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
+<<<<<<< HEAD
           fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
@@ -124,39 +120,52 @@ export default function App({ navigation }) {
           //If response is in json then in success
           .then((responseJson) => {
               //Success 
+=======
+          fetch(
+            'http://192.168.1.27:5000/verifyCredentials/' +
+              data.username +
+              '/' +
+              data.password,
+            {
+              method: 'GET',
+              //Request Type
+            }
+          )
+            .then((response) => response.json())
+            //If response is in json then in success
+            .then((responseJson) => {
+              //Success
+>>>>>>> 72778330f8ce66b00586dd3b8d81cac650d80103
               // setUsername(data.username)
               //   setPassword(data.password)
-                // return username, password ;
-              if (responseJson.Status)
-              {
-                //Go to next screen 
+              // return username, password ;
+              if (responseJson.Status) {
+                //Go to next screen
                 //alert("Successful");
-                global.username = data.username
-                global.password = data.password
+                global.username = data.username;
+                global.password = data.password;
                 dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
                 //console.log(global.username)
                 //console.log(global.password)
-              }
-              else
-              {
+              } else {
                 //Do not login and print message "Incorrect Username or Password"
-                alert("Incorrect Username or Password");
+                alert('Incorrect Username or Password');
               }
-          })
-          //If response is not in json then in error
-          .catch((error) => {
-              //Error 
+            })
+            //If response is not in json then in error
+            .catch((error) => {
+              //Error
               console.error(error);
-          });
+            });
         }
 
         //dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
-      signOut: () =>{ dispatch({ type: 'SIGN_OUT' });
-      global.username = null;
-      global.password = null;
-
-    },
+      signOut: () => {
+        dispatch({ type: 'SIGN_OUT' });
+        global.username = null;
+        global.password = null;
+      },
       signUp: async (data) => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
@@ -164,18 +173,22 @@ export default function App({ navigation }) {
         // In the example, we'll use a dummy token
 
         //ERROR HANDLING - If there is an unfilled text input - prompt user to enter those fields
-        if ((!data.username) || (!data.password) || (!data.confirmPassword) || (!data.firstName) || (!data.lastName) || (!data.email))
-        {
-          alert("Please enter all of the required information");
+        if (
+          !data.username ||
+          !data.password ||
+          !data.confirmPassword ||
+          !data.firstName ||
+          !data.lastName ||
+          !data.email
+        ) {
+          alert('Please enter all of the required information');
         }
         //ERROR HANDLING - If password and confirmPassword do not match
-        else if (data.password != data.confirmPassword)
-        {
-          alert("The password fields do not match");
-        }
-        else
-        {
+        else if (data.password != data.confirmPassword) {
+          alert('The password fields do not match');
+        } else {
           //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
+<<<<<<< HEAD
           fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
@@ -184,35 +197,53 @@ export default function App({ navigation }) {
           //If response is in json then in success
           .then((responseJson) => {
               //Success 
+=======
+          fetch(
+            'http://10.0.0.226:5000/newUserAccount/' +
+              data.firstName +
+              '/' +
+              data.lastName +
+              '/' +
+              data.username +
+              '/' +
+              data.password +
+              '/' +
+              data.email,
+            {
+              method: 'GET',
+              //Request Type
+            }
+          )
+            .then((response) => response.json())
+            //If response is in json then in success
+            .then((responseJson) => {
+              //Success
+>>>>>>> 72778330f8ce66b00586dd3b8d81cac650d80103
               // setUsername(data.username)
               //   setPassword(data.password)
-                // return username, password ;
-              if (responseJson.Status)
-              {
-                //Go to next screen 
+              // return username, password ;
+              if (responseJson.Status) {
+                //Go to next screen
                 //alert("Successful");
-                global.username = data.username
-                global.password = data.password
+                global.username = data.username;
+                global.password = data.password;
                 dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
-              }
-              else
-              {
+              } else {
                 //Do not login and print message "Incorrect Username or Password"
-                alert("Incorrect Information - Please Try Again");
+                alert('Incorrect Information - Please Try Again');
               }
-          })
-          //If response is not in json then in error
-          .catch((error) => {
-              //Error 
+            })
+            //If response is not in json then in error
+            .catch((error) => {
+              //Error
               console.error(error);
-          });
+            });
         }
-
       },
     }),
     []
   );
-  
+
   return (
     <View style={styles.container}>
       <AuthContext.Provider value={authContext}>
@@ -234,35 +265,35 @@ export default function App({ navigation }) {
                   }}
                 />
                 <Stack.Screen name='SignUp' component={SignUp} />
-                
               </>
             ) : (
               // User is signed in
               <Stack.Screen name='Home' component={BottomTabNav} />
             )}
-              <Stack.Screen name='CameraQR' component={CameraQR} />
-              <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
-              <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
-              <Stack.Screen name='Checkout' component={Checkout} />
-              <Stack.Screen name='Payscreen' component={PayScreen} />
-              <Stack.Screen name='Payment' component={Payment} />
-              <Stack.Screen name='Menu' component={Menu} />
-              <Stack.Screen name=' OptionStackScreen' component={ OptionStackScreen} />
-             
-              {/* <Stack.Screen name='TestingDB' component={TestingDB} /> */}
-             
+            <Stack.Screen name='CameraQR' component={CameraQR} />
+            <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
+            <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
+            <Stack.Screen name='Checkout' component={Checkout} />
+            <Stack.Screen name='Payscreen' component={PayScreen} />
+            <Stack.Screen name='Payment' component={Payment} />
+            <Stack.Screen name='Menu' component={Menu} />
+            <Stack.Screen
+              name=' OptionStackScreen'
+              component={OptionStackScreen}
+            />
+
+            {/* <Stack.Screen name='TestingDB' component={TestingDB} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
     </View>
   );
-  
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  
+
     justifyContent: 'center',
     backgroundColor: '#fff',
   },
