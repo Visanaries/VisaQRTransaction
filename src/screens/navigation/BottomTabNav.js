@@ -64,6 +64,9 @@ const BottomTabNav = ({ navigation, route }) => {
         component={eCards}
         options={{
           title: 'eCards',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='credit-card' />
+          )
         }}
       />
 

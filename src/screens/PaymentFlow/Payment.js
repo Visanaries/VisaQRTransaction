@@ -24,7 +24,7 @@ function getPayment() {
     });
 }
 
-const PayScreen = ({ navigation }) => {
+const Payment = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -32,15 +32,16 @@ const PayScreen = ({ navigation }) => {
           <Text style={styles.name}>PAY</Text>
         </View>
       </View>
-      <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
+      {/* <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput> */}
       <Button title='Pay' onPress={() => getPayment()} />
+      <Button title='PayPay' onPress={() => navigation.navigate('PayScreen')}/>
       <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
       <Button title='Cancel' onPress={() => navigation.goBack()} />
     </SafeAreaView>
   );
 };
 
-export default PayScreen;
+export default Payment;
 
 const styles = StyleSheet.create({
   container: {
