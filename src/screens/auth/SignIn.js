@@ -114,7 +114,6 @@ const SignIn = ({ navigation }) => {
             secureTextEntry
           />
           <TouchableOpacity style = {styles.signUpButton} onPress={() => signIn({ username, password })}>
-          {/* <TouchableOpacity style = {styles.signUpButton} onPress={() => verifySignIn()}> */}
             <Text style = {styles.signUpText}>SIGN IN</Text>
           </TouchableOpacity>
         </View>

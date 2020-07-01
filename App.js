@@ -137,8 +137,8 @@ export default function App({ navigation }) {
               {
                 //Go to next screen 
                 //alert("Successful");
-                global.username = data.username
-                global.password = data.password
+                global.username = data.username;
+                global.password = data.password;
                 dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
                 //console.log(global.username)
                 //console.log(global.password)
@@ -158,7 +158,11 @@ export default function App({ navigation }) {
 
         //dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      signOut: () => {
+        global.username = null;
+        global.password = null;
+        dispatch({ type: 'SIGN_OUT' });
+      },
       signUp: async (data) => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed

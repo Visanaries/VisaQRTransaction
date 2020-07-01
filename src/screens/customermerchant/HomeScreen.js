@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, } from 'react-native';
 import AuthContext from '../../constants/AuthContext';
 import ScreenContainer from '../../components/ScreenContainer';
 import CustomerQRGenorator from '../../components/CustomerQR/CustomerQRGenorator';
@@ -11,17 +11,21 @@ const HomeScreen = () => {
         <View>
           
           <View style={styles.header}>
-              <View style={styles.headerContent}>
-                  <Text style={styles.name}>{global.username} profile page</Text>
-              </View>
-            
+            <View style={styles.headerContent}>
+                <Text style={styles.name}>{global.username} profile page</Text>
             </View>
-            <View>
-            <CustomerQRGenorator/> 
-            </View>
-          <View>
-          <Button title='Sign out' onPress={signOut} />
           </View>
+
+          <View>
+            <CustomerQRGenorator/> 
+          </View>
+
+          <View>
+            <TouchableOpacity style = {styles.signOutButton} onPress={() => signOut()}>
+              <Text style = {styles.signOutText}>SIGN OUT</Text>
+            </TouchableOpacity>
+          </View>
+          
         </View>
         
       </ScreenContainer>
@@ -115,7 +119,25 @@ const styles = StyleSheet.create({
         borderColor: "#E6E6FA",
         marginBottom:10,
       },
-  
+      signOutButton:
+      {
+        backgroundColor: "#1A1F71",
+        margin: 20,
+        marginTop: 25,
+        alignItems: "center",
+        borderRadius: 50,
+        shadowColor: 'rgba(0,0,0, .5)',           // iPhone
+        shadowOffset: { height: 2, width: 2 },    // iPhone
+        shadowOpacity: 1,                         // iPhone
+        shadowRadius: 2,                          // iPhone
+        elevation: 2,                             //Android
+      },
+      signOutText:
+      {
+        color: "#FFFFFF",
+        padding: 13,
+        fontSize: 25,
+      }, 
 });
 
 export default HomeScreen;
