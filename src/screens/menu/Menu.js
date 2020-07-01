@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, Button, Image, Modal, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
+import { View, Text, Button, Image, Modal, TouchableOpacity, StyleSheet, FlatList, ImageBackground} from 'react-native';
 import { CheckBox } from 'react-native-elements'
 import ScreenContainer from '../../components/ScreenContainer';
 import { Window_Width, Window_Height} from '../../utils/constants';
@@ -187,7 +187,10 @@ render() {
   <ScreenContainer style={styles.container}>
   <View style={styles.header}>
       <View style={styles.headerContent}>
-          <Image style={styles.logo} source={{uri: 'http://logok.org/wp-content/uploads/2014/03/Visa-2014-logo-blue-880x660.png'}}/>
+        <TouchableOpacity onPress={() => this.props.navigate.navigation.goBack()}>
+          
+          <ImageBackground style={styles.logo} source={{uri: 'http://logok.org/wp-content/uploads/2014/03/Visa-2014-logo-blue-880x660.png'}}/>
+          </TouchableOpacity>
           <Text style={styles.name}>McDonald's</Text>
       </View>
     </View>
@@ -203,7 +206,7 @@ render() {
   )}
   keyExtractor={item => item.id}
   />
-  <Button style={{justifyContent: 'flex-end'}}title = "Checkout" onPress={() => this.props.navigation.navigate('Checkout', {Cart: this.state.Cart})}></Button>
+  <Button style={{justifyContent: 'flex-end'}}title = "Checkout" onPress={() => this.props.navigation.navigate('Checkout')}></Button>
   </ScreenContainer>
   );
     }

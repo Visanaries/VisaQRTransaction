@@ -17,9 +17,12 @@ import SignUp from './src/screens/auth/SignUp';
 import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScannerCamera/CameraQR';
 import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
+import Checkout from './src/screens/checkout/Checkout';
+import Payment from './src/screens/PaymentFlow/Payment';
 // import ApplePayAPI from './src/components/TestingDB/TestingDB';
 
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
+import Menu from './src/screens/menu/Menu';
 // import TestingDB from './src/components/TestingDB/TestingDB';
 // import Axios from 'axios';
 
@@ -122,7 +125,8 @@ export default function App({ navigation }) {
         else
         {
           //GET request 
-          fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -137,8 +141,8 @@ export default function App({ navigation }) {
               {
                 //Go to next screen 
                 //alert("Successful");
-                global.username = data.username;
-                global.password = data.password;
+                global.username = data.username
+                global.password = data.password
                 dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
                 //console.log(global.username)
                 //console.log(global.password)
@@ -158,11 +162,11 @@ export default function App({ navigation }) {
 
         //dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
-      signOut: () => {
-        global.username = null;
-        global.password = null;
-        dispatch({ type: 'SIGN_OUT' });
-      },
+      signOut: () =>{ dispatch({ type: 'SIGN_OUT' });
+      global.username = null;
+      global.password = null;
+
+    },
       signUp: async (data) => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
@@ -181,8 +185,8 @@ export default function App({ navigation }) {
         }
         else
         {
-          //GET request 
-          fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
+          //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://10.0.0.226:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
           })
@@ -249,6 +253,9 @@ export default function App({ navigation }) {
               <Stack.Screen name='CameraQR' component={CameraQR} />
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
               <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
+              <Stack.Screen name='Checkout' component={Checkout} />
+              <Stack.Screen name='Payment' component={Payment} />
+              <Stack.Screen name='Menu' component={Menu} />
               {/* <Stack.Screen name='TestingDB' component={TestingDB} /> */}
              
           </Stack.Navigator>
