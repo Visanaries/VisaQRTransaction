@@ -20,7 +20,7 @@ import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
 import Checkout from './src/screens/checkout/Checkout';
 import Payment from './src/screens/PaymentFlow/Payment';
 // import ApplePayAPI from './src/components/TestingDB/TestingDB';
-
+import OptionStackScreen from './src/screens/PaymentFlow/OptionStackScreen';
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import Menu from './src/screens/menu/Menu';
 // import TestingDB from './src/components/TestingDB/TestingDB';
@@ -114,7 +114,7 @@ export default function App({ navigation }) {
         {
           //GET request 
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -174,7 +174,7 @@ export default function App({ navigation }) {
         else
         {
           //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
+          fetch("http://10.0.0.226:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
           })
@@ -244,6 +244,8 @@ export default function App({ navigation }) {
               <Stack.Screen name='Checkout' component={Checkout} />
               <Stack.Screen name='Payment' component={Payment} />
               <Stack.Screen name='Menu' component={Menu} />
+              <Stack.Screen name=' OptionStackScreen' component={ OptionStackScreen} />
+             
               {/* <Stack.Screen name='TestingDB' component={TestingDB} /> */}
              
           </Stack.Navigator>
