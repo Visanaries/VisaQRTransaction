@@ -12,7 +12,7 @@ import eCards from '../eCards/eCards';
 import CameraQR from '../../components/QrScannerCamera/CameraQR';
 import Menu from '../menu/Menu';
 // import ApiCallerQR from '../QRscanner/Assets/PostApiCall';
-
+import TabBarIcon from '../../components/TabBarIcon'; 
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -25,6 +25,9 @@ const BottomTabNav = ({ navigation, route }) => {
         component={HomeScreen}
         options={{
           title: 'Home',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='home' />
+          )
         }}
       />
       <BottomTab.Screen
@@ -32,23 +35,30 @@ const BottomTabNav = ({ navigation, route }) => {
         component={MerchantScreen}
         options={{
           title: 'Merchant',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='store' />
+          )
         }}
       />
       <BottomTab.Screen
         name='Menu'
         component={Menu}
+  
         options={{
           title: 'Menu',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='menu' />
+          )
         }}
       />
-
+{/* 
       <BottomTab.Screen
         name='CMerchant'
         component={CustomerMerchantScreen}
         options={{
           title: 'CMerchant',
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name='eCards'
         component={eCards}
@@ -62,6 +72,9 @@ const BottomTabNav = ({ navigation, route }) => {
         component={QRScannerScreen}
         options={{
           title: 'QR',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='camera' />
+          )
         }}
       />
 

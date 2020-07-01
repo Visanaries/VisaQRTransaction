@@ -131,8 +131,9 @@ class Menu extends React.Component {
       //If response is not in json then in error
       .catch((error) => {
         console.error(error);
-      });
+    });
   }
+  
   componentWillUnmount() {}
 
   render() {
@@ -269,17 +270,17 @@ class Menu extends React.Component {
           )}
           keyExtractor={(item) => item.id}
         />
-        <TouchableOpacity style={styles.checkout}>
+        <TouchableOpacity  style={styles.checkout}>
           <Button
-            color='#fff'
-            fontWeight='700'
-            title='Checkout'
-            onPress={() =>
-              this.props.navigation.navigate('Checkout', {
-                Cart: this.state.Cart,
-              })
-            }
-          />
+          color="#fff"
+          fontWeight="700"
+          title='Checkout'
+          onPress={() =>
+            this.props.navigation.navigate('Checkout', {
+              Cart: this.state.Cart,
+            })
+          }
+       />
         </TouchableOpacity>
       </View>
     );

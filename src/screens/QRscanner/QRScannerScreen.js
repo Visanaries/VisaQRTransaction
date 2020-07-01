@@ -26,9 +26,7 @@ export default function QRScannerScreen({ navigation }) {
       <View>
         <View style={styles.header}>
           <View style={styles.headerContent}>
-            <Text style={styles.name}>
-              QR Scanner
-            </Text>
+            <Text style={styles.name}>QR Scanner</Text>
           </View>
         </View>
         <View>
@@ -42,7 +40,9 @@ export default function QRScannerScreen({ navigation }) {
                 style={styles.background_size}
               ></ImageBackground>
             </TouchableOpacity>
-            <Text style={styles.pressToStart}>&#8593; Press to start scanning &#8593;</Text>
+            <Text style={styles.pressToStart}>
+              &#9757;Press to start scanning &#9757;
+            </Text>
           </View>
         </View>
       </View>
@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     marginTop: 50,
     fontWeight: '700',
     color: '#1a1f71',
-   fontSize: 25
-    
-  }
+    fontSize: 25,
+  },
 });
