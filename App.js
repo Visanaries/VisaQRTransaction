@@ -74,19 +74,6 @@ export default function App({ navigation }) {
       userToken: null,
     }
   );
-  
-  // async componentDidMount() {
-  //   try{
-  //     const response = await axios.get("link");
-  //     setData(prevState =>({
-  //       user: prevState.user = response.data
-
-  //     }));
-  //   }catch (error){
-  //     console.log(error);
-  //   }
-
-  // }
 
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
@@ -117,7 +104,7 @@ export default function App({ navigation }) {
         // After getting token, we need to persist the token using `AsyncStorage`
         // In the example, we'll use a dummy token
 
-        //ERROR HANDLING - If no username or password entered - propmt user to enter those fields
+        //ERROR HANDLING - If no username or password entered - prompt user to enter those fields
         if ((!data.username) || (!data.password))
         {
           alert("Please enter your username and password");
