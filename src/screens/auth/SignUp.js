@@ -6,6 +6,7 @@ import AuthContext from '../../constants/AuthContext';
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -21,7 +22,6 @@ const SignUp = ({ navigation }) => {
           placeholder='Email'
           value={email}
           onChangeText={setEmail}
-          secureTextEntry
         />
          <TextInput style = {styles.textInput}
           placeholder='First Name'
@@ -46,11 +46,11 @@ const SignUp = ({ navigation }) => {
         />
         <TextInput style = {styles.textInput}
           placeholder='Confirm Password'
-          value={password}
-          onChangeText={setPassword}
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
           secureTextEntry
         />
-        <TouchableOpacity style = {styles.signUpButton} onPress={() => signUp({ username, password })}>
+        <TouchableOpacity style = {styles.signUpButton} onPress={() => signUp({ username, password, confirmPassword, firstName, lastName, email })}>
           <Text style = {styles.signUpText}>SIGN UP</Text>
         </TouchableOpacity>
 
@@ -76,13 +76,14 @@ const styles = StyleSheet.create(
     },
     signInView:
     {
+      marginTop: 80,
     },
     logoView:
     {
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
-      marginBottom: 70,
+      marginBottom: 75,
     },
     extraOptionsView:
     {

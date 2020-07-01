@@ -122,7 +122,7 @@ export default function App({ navigation }) {
         else
         {
           //GET request 
-          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -140,8 +140,8 @@ export default function App({ navigation }) {
                 global.username = data.username
                 global.password = data.password
                 dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
-                console.log(global.username)
-                console.log(global.password)
+                //console.log(global.username)
+                //console.log(global.password)
               }
               else
               {
@@ -165,7 +165,51 @@ export default function App({ navigation }) {
         // After getting token, we need to persist the token using `AsyncStorage`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        //ERROR HANDLING - If there is an unfilled text input - prompt user to enter those fields
+        if ((!data.username) || (!data.password) || (!data.confirmPassword) || (!data.firstName) || (!data.lastName) || (!data.email))
+        {
+          alert("Please enter all of the required information");
+        }
+        //ERROR HANDLING - If password and confirmPassword do not match
+        else if (data.password != data.confirmPassword)
+        {
+          alert("The password fields do not match");
+        }
+        else
+        {
+          //GET request 
+          fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
+              method: 'GET' 
+              //Request Type 
+          })
+          .then((response) => response.json())
+          //If response is in json then in success
+          .then((responseJson) => {
+              //Success 
+              // setUsername(data.username)
+              //   setPassword(data.password)
+                // return username, password ;
+              if (responseJson.Status)
+              {
+                //Go to next screen 
+                //alert("Successful");
+                global.username = data.username
+                global.password = data.password
+                dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+              }
+              else
+              {
+                //Do not login and print message "Incorrect Username or Password"
+                alert("Incorrect Information - Please Try Again");
+              }
+          })
+          //If response is not in json then in error
+          .catch((error) => {
+              //Error 
+              console.error(error);
+          });
+        }
+
       },
     }),
     []
