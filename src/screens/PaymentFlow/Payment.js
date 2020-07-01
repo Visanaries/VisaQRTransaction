@@ -9,6 +9,17 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
+function getMoviesFromApi() {
+  return fetch('/payMerchant/<string:amount>/<string:username>/<string:password>/<string:merchant>')
+    .then((response) => response.json())
+    .then((json) => {
+      return json.movies;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 const PayScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
