@@ -116,6 +116,7 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({Cart: []})
     //GET request 
     fetch(`http://10.0.0.226:5000/menuItems/${global.QRname}`, {
     // fetch(`http://10.0.0.226:5000/menuItems/McDonald's`, {
@@ -133,8 +134,8 @@ class Menu extends React.Component {
         console.error(error);
     });
   }
-  componentWillUnmount() {
-  }
+  
+  componentWillUnmount() {}
 
   render() {
 
@@ -272,9 +273,9 @@ class Menu extends React.Component {
           keyExtractor={(item) => item.id}
         />
         <TouchableOpacity  style={styles.checkout}>
-           <Button
-        color="#fff"
-        fontWeight="700"
+          <Button
+          color="#fff"
+          fontWeight="700"
           title='Checkout'
           onPress={() =>
             this.props.navigation.navigate('Checkout', {
