@@ -227,7 +227,7 @@ export default function App({ navigation }) {
             <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
             <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
             <Stack.Screen name='Checkout' component={Checkout} />
-            <Stack.Screen name='Payscreen' component={PayScreen} />
+            <Stack.Screen name='PayScreen' component={PayScreen} />
             <Stack.Screen name='Payment' component={Payment} />
             <Stack.Screen name='Menu' component={Menu} />
             <Stack.Screen
