@@ -20,7 +20,8 @@ const Checkout = ({ route, navigation }) => {
   }, 0);
 
   var tax = sum * .0625;
-
+  var total= tax+sum;
+  global.totalcost =total;
   return (
     <ScreenContainer style={styles.container}>
       <View style={styles.header}>
@@ -48,7 +49,7 @@ const Checkout = ({ route, navigation }) => {
         <Text style = {styles.BoldBody}>Tax: {tax}</Text>
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>  
-        <Text style = {styles.BoldBody}>Total: {tax + sum}</Text>
+        <Text style = {styles.BoldBody}>Total: {global.totalcost}</Text>
       </View>
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
@@ -59,7 +60,7 @@ const Checkout = ({ route, navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.GreenButton}
-          onPress={() => {navigation.navigate('Pay')}}
+          onPress={() => {navigation.navigate('Payment')}}
           >
           <Text style={styles.textStyle}>Confirm</Text>
         </TouchableOpacity>

@@ -9,19 +9,18 @@ import {
 } from 'react-native';
 import { Window_Width, Window_Height } from '../../utils/constants';
 import { createStackNavigator } from '@react-navigation/stack';
-import PayScreen from './PayScreen';
-import Payment from './Payment';
+// import PayScreen from './OptionMenu';
+import OptionMenu from './OptionMenu.js';
 import Menu from '../menu/Menu';
-
 
 const OptionStack = createStackNavigator();
 
-const OptionStackScreen = ({navigation}) => {
+const OptionStackScreen = ({ navigation }) => {
   return (
-    <OptionStack.Navigator headerMode="none">
-     <OptionStack.Screen name="Pay" component={Payment}/> 
-      <OptionStack.Screen name="PayScreen" component={PayScreen}/> 
-     <OptionStack.Screen name="Menu" component={Menu}/> 
+    <OptionStack.Navigator headerMode='none'>
+      <OptionStack.Screen name='OptionsMenu' component={OptionMenu} />
+      {/* <OptionStack.Screen name='PayScreen' component={PayScreen} /> */}
+      <OptionStack.Screen name='Menu' component={Menu} />
     </OptionStack.Navigator>
   );
 };
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //marginTop: constants.statusBarHeight,
-  }, 
+  },
   item: {
     width: Window_Width,
     height: 65,

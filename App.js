@@ -18,8 +18,9 @@ import QRScannerScreen from './src/screens/QRscanner/QRScannerScreen';
 import CameraQR from './src/components/QrScannerCamera/CameraQR';
 import MerchQRGen from './src/components/QRMerchantManualGen/MerchQRGen';
 import Checkout from './src/screens/checkout/Checkout';
-import Payment from './src/screens/PaymentFlow/Payment';
+import PayScreen from './src/screens/PaymentFlow/PayScreen'
 // import ApplePayAPI from './src/components/TestingDB/TestingDB';
+import Payment from './src/screens/PaymentFlow/Payment';
 import OptionStackScreen from './src/screens/PaymentFlow/OptionStackScreen';
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import Menu from './src/screens/menu/Menu';
@@ -36,6 +37,7 @@ function SplashScreen() {
 global.username= ''
 global.password= ''
 global.QRname = ''
+global.totalcost = '';
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
@@ -114,7 +116,7 @@ export default function App({ navigation }) {
         {
           //GET request 
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.4:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -174,7 +176,7 @@ export default function App({ navigation }) {
         else
         {
           //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.4:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
+          fetch("http://10.0.0.226:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
           })
@@ -242,6 +244,7 @@ export default function App({ navigation }) {
               <Stack.Screen name='QRScannerScreen' component={QRScannerScreen} />
               <Stack.Screen name='MerchQRGen' component={MerchQRGen} />
               <Stack.Screen name='Checkout' component={Checkout} />
+              <Stack.Screen name='Payscreen' component={PayScreen} />
               <Stack.Screen name='Payment' component={Payment} />
               <Stack.Screen name='Menu' component={Menu} />
               <Stack.Screen name=' OptionStackScreen' component={ OptionStackScreen} />

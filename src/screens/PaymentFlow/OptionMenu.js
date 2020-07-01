@@ -7,39 +7,34 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-//  global.ammount = '2.00';
+// import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
-function getPayment() {
-
-  return fetch(`http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log( json.paymerchant);  
-      return json.paymerchant;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-const PayScreen = ({ navigation }) => {
+const Payment = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>PAY</Text>
+          <Text style={styles.name}>Options for {global.QRname}</Text>
         </View>
       </View>
-      <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
-      <Button title='Pay' onPress={() => getPayment()} />
-      <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
-      <Button title='Cancel' onPress={() => navigation.goBack()} />
-    </SafeAreaView>
+      <View style={styles.buttonOptions}>
+        <Button
+          style={styles.buttonOptions}
+          title='Pay'
+          onPress={() => navigation.navigate('PayScreen')}
+        />
+      </View>
+      <View style={styles.buttonOptions}>
+        <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
+      </View>
+      <View style={styles.cancelOption}>
+        <Button title='Cancel' onPress={() => navigation.goBack()} />
+      </View>
+    </View>
   );
 };
 
-export default PayScreen;
+export default Payment;
 
 const styles = StyleSheet.create({
   container: {
@@ -88,12 +83,25 @@ const styles = StyleSheet.create({
     color: 'white',
     margin: 50,
     padding: 10,
-    height:80,
+    height: 80,
     //width: undefined,
     alignItems: 'center',
     //alignSelf: 'center',
     fontSize: 50,
     fontWeight: '700',
     borderRadius: 15,
+  },
+  buttonOptions: {
+    padding: 20,
+    backgroundColor: '#faaa13',
+    justifyContent: 'space-between',
+    borderRadius: 15,
+    margin: 20,
+    color: 'black',
+    fontWeight: '700',
+  },
+  cancelOption: {
+    backgroundColor: 'red',
+    margin: 30,
   },
 });
