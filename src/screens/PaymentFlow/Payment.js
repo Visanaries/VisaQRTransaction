@@ -9,21 +9,23 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-const Payment = ({ navigation }) => {
+const PayScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>Paying {global.QRname}</Text>
+          <Text style={styles.name}>PAY</Text>
         </View>
       </View>
       <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput>
+      <Button title='Pay' onPress={() => navigation.navigate('Payment')} />
+      <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
       <Button title='Cancel' onPress={() => navigation.goBack()} />
-    </View>
+    </SafeAreaView>
   );
 };
 
-export default Payment;
+export default PayScreen;
 
 const styles = StyleSheet.create({
   container: {

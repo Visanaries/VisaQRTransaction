@@ -54,7 +54,7 @@ export default function CameraQR({ navigation }) {
          
       />
       <Button title={'Go Back'} onPress={() => navigation.goBack()}/>
-       <Button title={`Tap to Follow Scanned Link to ${global.QRname}`}onPress={() => navigation.navigate('Menu')}/> 
+       <Button title={`Tap to Follow Scanned Link to ${global.QRname}`}onPress={() => navigation.navigate('Payment')}/> 
       
       {scanned && (
        
