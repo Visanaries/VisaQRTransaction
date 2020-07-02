@@ -87,6 +87,7 @@ export default function CameraQR({ navigation }) {
       )}
       {renderIf(userType == "Cardholder",
           <Button title={`Tap to Follow Scanned Link to Cardholder`}onPress={() => navigation.navigate('Payment')}/> 
+          // MAKE ALTERNATE PAY SCREEN FOR CARDHOLDERS - WITHOUT MENU OPTION - FETCH IS ALSO DIFFERENT
       )}
        {/* <Button title={`Tap to Follow Scanned Link to Menu`}onPress={() => navigation.navigate('Payment')}/>  */}
       
