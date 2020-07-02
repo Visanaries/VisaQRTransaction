@@ -11,7 +11,7 @@ const HomeScreen = () => {
 
   React.useEffect(() => {
     //GET request 
-    fetch(`http://10.0.0.226:5000/funds/${global.username}/${global.password}`, {
+    fetch(`http://192.168.1.8:5000/funds/${global.username}/${global.password}`, {
         method: 'GET' 
         //Request Type 
     })
@@ -28,7 +28,7 @@ const HomeScreen = () => {
 
   React.useEffect(() => {
     //GET request 
-    fetch(`http://10.0.0.226:5000/transactionHistory/${global.username}/${global.password}`, {
+    fetch(`http://192.168.1.8:5000/transactionHistory/${global.username}/${global.password}`, {
         method: 'GET' 
         //Request Type 
     })
@@ -61,7 +61,7 @@ const HomeScreen = () => {
 
           <View>
             {/* Funds */}
-            <Text>Funds: {funds}</Text>
+            <Text>Funds: {Number(funds).toFixed(2)}</Text>
             {/* Transaction History */}
             <Text>Transaction History:</Text>
             <FlatList
@@ -69,7 +69,7 @@ const HomeScreen = () => {
               style={styles.feed}
               data={transactionHistory}
               renderItem={({ item, index }) => (
-                <Text>Name: {transactionHistory[index].name}; Amount: {transactionHistory[index].amount}</Text>
+                <Text>Name: {transactionHistory[index].name}; Amount: {transactionHistory[index].amount.toFixed(2)}</Text>
               )}
               keyExtractor={(item) => item.index}
               showsVerticalScrollIndicator={false}

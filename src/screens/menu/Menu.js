@@ -15,97 +15,6 @@ import ScreenContainer from '../../components/ScreenContainer';
 import { Window_Width, Window_Height } from '../../utils/constants';
 import Constants from 'expo-constants';
 
-// const Items = [
-//   {
-//     id: 'bd743bea-c1b1-46c2-aed5-3ad53abb28ba',
-//     title: 'Hamburger',
-//     price: 8,
-//     inglist: [
-//       {
-//         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//         title: 'Lettuce',
-//       },
-//       {
-//         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//         title: 'Tomato',
-//       },
-//       {
-//         id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//         title: 'Onion',
-//       },
-//       {
-//         id: '58694a0f-3da1-473f-bd96-143331e29d72',
-//         title: 'Ketchup',
-//       },
-//     ],
-//   },
-//   {
-//     id: '3ac68afc-b105-48d3-a4f8-fbd91aa97f63',
-//     title: 'Cheeseburger',
-//     price: 9,
-//     inglist: [
-//       {
-//         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//         title: 'Lettuce',
-//       },
-//       {
-//         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//         title: 'Tomato',
-//       },
-//       {
-//         id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//         title: 'Onion',
-//       },
-//       {
-//         id: '58694a0f-3da1-473f-bd96-143331e29d72',
-//         title: 'Ketchup',
-//       },
-//       {
-//         id: '58694a0f-3da1-473f-bd96-1433346s9d72',
-//         title: 'Cheese',
-//       },
-//     ],
-//   },
-//   {
-//     id: '58694a0f-3da1-881f-bd96-108571e29d72',
-//     title: 'French Fries',
-//     price: 3,
-//     inglist: [
-//       {
-//         id: '58694a0f-3da1-473f-bd96-143331e29d72',
-//         title: 'Ketchup',
-//       },
-//     ],
-//   },
-//   {
-//     id: 'bd74aaaa-c1b1-46c2-aed5-3ad53abb28ba',
-//     title: 'Salad',
-//     price: 5,
-//     inglist: [
-//       {
-//         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//         title: 'Lettuce',
-//       },
-//       {
-//         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//         title: 'Tomato',
-//       },
-//       {
-//         id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//         title: 'Onion',
-//       },
-//       {
-//         id: '58694a0f-3da1-473f-bd96-143331e29d72',
-//         title: 'Salad Dressing',
-//       },
-//       {
-//         id: '58694a0f-3da1-473f-bd96-143331e29d72',
-//         title: 'Croutons',
-//       },
-//     ],
-//   },
-// ];
-
 class Menu extends React.Component {
   constructor(props) {
     super(props);
@@ -118,7 +27,7 @@ class Menu extends React.Component {
   componentDidMount() {
     this.setState({Cart: []})
     //GET request 
-    fetch(`http://10.0.0.226:5000/menuItems/${global.QRname}`, {
+    fetch(`http://192.168.1.8:5000/menuItems/${global.QRname}`, {
     // fetch(`http://10.0.0.226:5000/menuItems/McDonald's`, {
         method: 'GET' 
         //Request Type 
@@ -138,25 +47,6 @@ class Menu extends React.Component {
   componentWillUnmount() {}
 
   render() {
-
-    // const [Items, setItems] = React.useState('');
-
-    // React.useEffect(() => {
-    //   //GET request 
-    //   fetch(`http://192.168.1.8:5000/menuItems/${global.QRname}`, {
-    //       method: 'GET' 
-    //       //Request Type 
-    //   })
-    //   .then((response) => response.json())
-    //   .then((responseJson) => {
-    //       //Get funds
-    //       setItems(responseJson.Items);
-    //   })
-    //   //If response is not in json then in error
-    //   .catch((error) => {
-    //       console.error(error);
-    //   });
-    // }, []);
 
     var self = this;
     function Item({ id, title, price, inglist }) {
@@ -180,7 +70,7 @@ class Menu extends React.Component {
                   }}
                 >
                   <Text style={styles.modalHeader}>{title}</Text>
-                  <Text style={styles.modalHeader}>{price}</Text>
+                  <Text style={styles.modalHeader}>${price}</Text>
                 </View>
                 <Text style={styles.modalSubHeader}>Items</Text>
                 <FlatList

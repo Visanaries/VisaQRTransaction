@@ -19,9 +19,11 @@ const Checkout = ({ route, navigation }) => {
     return prev + cur.price;
   }, 0);
 
-  var tax = sum * .0625;
-  var total= tax+sum ;
-  global.totalcost = total;
+  // var tax = sum * .0625;
+  // var total= tax+sum ;
+  var tax = Number(sum) * 0.0825;
+  var total = tax + Number(sum);
+  global.totalcost = total.toFixed(2);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
