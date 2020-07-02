@@ -12,6 +12,21 @@ import Constants from 'expo-constants';
 import ScreenContainer from '../../components/ScreenContainer';
 import { Window_Width, Window_Height } from '../../utils/constants';
 
+function doPayment() {
+  //return fetch(`http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
+  return fetch(
+    `http://192.168.1.8:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`
+  )
+    .then((response) => response.json())
+    .then((json) => {
+      global.totalcost = '0.00';
+      global.QRname = '';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 const Checkout = ({ route, navigation }) => {
   var { Cart } = route.params;
   function CartElement({ title, price, ing }) {
@@ -109,7 +124,8 @@ const Checkout = ({ route, navigation }) => {
             fontWeight='700'
             title='Confirm'
             onPress={() => {
-              navigation.navigate('Payment');
+              doPayment();
+              navigation.navigate('Home');
             }}
           />
         </TouchableOpacity>

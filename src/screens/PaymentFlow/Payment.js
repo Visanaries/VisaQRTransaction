@@ -40,26 +40,42 @@ const Payment = ({ navigation }) => {
           <Text style={styles.name}>Options</Text>
         </View>
       </View>
-      {/* <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput> */}
-      <View style={styles.buttons}>
+
+      {/* <View style={styles.buttons}>
         <Button
-          style={{ fontWeight: '700' }}
-          title='Pay'
-          onPress={() => payAndNav()}
-        />
-      </View>
-      <View style={styles.buttons}>
-        <Button
-          title='Input Amount'
+          title='Pay: Input Amount'
           onPress={() => navigation.navigate('PayScreen')}
         />
+      </View> */}
+
+      <View style = {styles.buttonView}>
+        {/* Input Amount */}
+        <TouchableOpacity style = {styles.payButtons} onPress={() => navigation.navigate('PayScreen')}>
+          <Text style = {styles.buttonText}>Pay: Input Amount</Text>
+        </TouchableOpacity>
+
+        {/* Menu */}
+        <TouchableOpacity style = {styles.payButtons} onPress={() => navigation.navigate('Menu')}>
+          <Text style = {styles.buttonText}>Menu</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.buttons}>
-        <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
+
+      <View style = {styles.cancelView}>
+        {/* Cancel */}
+        <TouchableOpacity style = {styles.cancelButton} onPress={() => navigation.goBack()}>
+          <Text style = {styles.buttonText}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
+      
+
+
+
+      {/* <View style={styles.buttons}>
+        <Button title='Pay: Menu' onPress={() => navigation.navigate('Menu')} />
       </View>
       <View style={(styles.buttons, styles.cancelButton)}>
         <Button title='Cancel' onPress={() => navigation.goBack()} />
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
@@ -126,10 +142,45 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 10,
   },
-  cancelButton: {
-    marginTop: 375,
-    marginHorizontal: 20,
-    backgroundColor: '#ff5148',
-  
+  payButtons:
+  {
+    padding: 20,
+    backgroundColor: "#1A1F71",
+    margin: 20,
+    marginTop: 25,
+    alignItems: "center",
+    borderRadius: 50,
+    shadowColor: 'rgba(0,0,0, .5)',           // iPhone
+    shadowOffset: { height: 2, width: 2 },    // iPhone
+    shadowOpacity: 1,                         // iPhone
+    shadowRadius: 2,                          // iPhone
+    elevation: 2,                             //Android
   },
+  cancelButton:
+  {
+    backgroundColor: "#F7B600",
+    margin: 20,
+    marginTop: 25,
+    alignItems: "center",
+    borderRadius: 50,
+    shadowColor: 'rgba(0,0,0, .5)',           // iPhone
+    shadowOffset: { height: 2, width: 2 },    // iPhone
+    shadowOpacity: 1,                         // iPhone
+    shadowRadius: 2,                          // iPhone
+    elevation: 2,                             //Android
+  },
+  buttonText:
+  {
+    color: "#FFFFFF",
+    padding: 13,
+    fontSize: 25,
+  }, 
+  buttonView:
+  {
+    marginTop: 90,
+  }, 
+  cancelView:
+  {
+    marginTop: 250,
+  }, 
 });
