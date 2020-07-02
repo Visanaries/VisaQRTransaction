@@ -50,7 +50,7 @@ const Payment = ({ navigation }) => {
 
       <View style = {styles.buttonView}>
         {/* Input Amount */}
-        <TouchableOpacity style = {styles.payButtons} onPress={() => navigation.navigate('PayScreen')}>
+        <TouchableOpacity style = {styles.payButtons} onPress={() => navigation.navigate('PayScreenTwo')}>
           <Text style = {styles.buttonText}>Pay: Input Amount</Text>
         </TouchableOpacity>
 

@@ -25,6 +25,7 @@ import OptionStackScreen from './src/screens/PaymentFlow/OptionStackScreen';
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import Menu from './src/screens/menu/Menu';
 import PaymentTwo from './src/screens/PaymentFlow/PaymentTwo';
+import PayScreenTwo from './src/screens/PaymentFlow/PayScreenTwo';
 // import TestingDB from './src/components/TestingDB/TestingDB';
 // import Axios from 'axios';
 
@@ -233,6 +234,7 @@ export default function App({ navigation }) {
             <Stack.Screen name='Payment' component={Payment} />
             <Stack.Screen name='Menu' component={Menu} />
             <Stack.Screen name='PaymentTwo' component={PaymentTwo} />
+            <Stack.Screen name='PayScreenTwo' component={PayScreenTwo} />
             <Stack.Screen
               name=' OptionStackScreen'
               component={OptionStackScreen}
