@@ -32,13 +32,10 @@ export default function QRScannerScreen({ navigation }) {
         <View>
           <View style={styles.middlerContent}>
             <TouchableOpacity onPress={() => navigation.navigate('CameraQR')}>
-              <Image
-                style={styles.imageStyle}
-                source={require('../../image_resources/QRLogo.png')}
-              />
+              <Image style = {styles.imageStyle} source = {require("../../image_resources/QRLogo.png")}/>
             </TouchableOpacity>
             <Text style={styles.pressToStart}>
-              &#9757;Press to start scanning &#9757;
+              &#9757;Press to Start Scanning &#9757;
             </Text>
           </View>
         </View>
@@ -135,5 +132,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     resizeMode: 'contain',
+    marginTop:90,
+    marginBottom: 50,
   },
 });
