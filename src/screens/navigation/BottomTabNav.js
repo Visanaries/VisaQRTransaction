@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../customermerchant/HomeScreen';
 import QRScannerScreen from '../../screens/QRscanner/QRScannerScreen';
-import MerchantScreen from '../merchant/MerchantScreen';
+import TransactionScreen from '../transaction/TransactionScreen';
 import CustomerMerchantScreen from '../customermerchant/CustomerMerchantScreen';
 import eCards from '../eCards/eCards';
 import CameraQR from '../../components/QrScannerCamera/CameraQR';
@@ -31,16 +31,16 @@ const BottomTabNav = ({ navigation, route }) => {
         }}
       />
       <BottomTab.Screen
-        name='Merchant'
-        component={MerchantScreen}
+        name='Transactions'
+        component={TransactionScreen}
         options={{
-          title: 'Merchant',
+          title: 'Transactions',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name='store' />
           )
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name='Menu'
         component={Menu}
   
@@ -50,7 +50,7 @@ const BottomTabNav = ({ navigation, route }) => {
             <TabBarIcon focused={focused} name='menu' />
           )
         }}
-      />
+      /> */}
 {/* 
       <BottomTab.Screen
         name='CMerchant'

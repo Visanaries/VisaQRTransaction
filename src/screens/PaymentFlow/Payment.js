@@ -8,23 +8,30 @@ import {
   Image,
 } from 'react-native';
 //import { TextInput } from 'react-native-gesture-handler';
-  
 
 function getgetPayment() {
-
   //return fetch(`http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
-  return fetch(`http://192.168.1.8:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
+  return fetch(
+    `http://192.168.1.27:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`
+  )
     .then((response) => response.json())
     .then((json) => {
+      global.totalcost = '0.00';
+      global.QRname = '';
     })
     .catch((error) => {
       console.error(error);
     });
-// alert(global.totalcost);
-// console.log(global.totalcost);
+  // alert(global.totalcost);
+  // console.log(global.totalcost);
 }
 
 const Payment = ({ navigation }) => {
+  let payAndNav = () => {
+    getgetPayment();
+    navigation.navigate('Home');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -33,8 +40,8 @@ const Payment = ({ navigation }) => {
         </View>
       </View>
       {/* <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput> */}
-      <Button title='Pay' onPress={() => getgetPayment()} />
-      <Button title='PayPay' onPress={() => navigation.navigate('PayScreen')}/>
+      <Button title='Pay' onPress={() => payAndNav()} />
+      <Button title='PayPay' onPress={() => navigation.navigate('PayScreen')} />
       <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
       <Button title='Cancel' onPress={() => navigation.goBack()} />
     </SafeAreaView>
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
     color: 'white',
     margin: 50,
     padding: 10,
-    height:80,
+    height: 80,
     //width: undefined,
     alignItems: 'center',
     //alignSelf: 'center',
