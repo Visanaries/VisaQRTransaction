@@ -18,7 +18,7 @@ const HomeScreen = () => {
   React.useEffect(() => {
     //GET request
     fetch(
-      `http://192.168.1.27:5000/funds/${global.username}/${global.password}`,
+      `http://192.168.1.8:5000/funds/${global.username}/${global.password}`,
       {
         method: 'GET',
         //Request Type

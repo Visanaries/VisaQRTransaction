@@ -26,7 +26,7 @@ const Checkout = ({ route, navigation }) => {
         }}
       >
         <Text style={styles.Body}>{title}</Text>
-        <Text style={styles.Body}>${price}</Text>
+        <Text style={styles.Body}>${Number(price).toFixed(2)}</Text>
       </View>
     );
   }
@@ -84,10 +84,10 @@ const Checkout = ({ route, navigation }) => {
         }}
       >
         {/* Took tofixout */}
-        <Text style={styles.BoldBody}>Sub-Total: ${sum}</Text>
+        <Text style={styles.BoldBody}>Sub-Total: ${Number(sum).toFixed(2)}</Text>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-        <Text style={styles.BoldBody}>Tax: ${tax}</Text>
+        <Text style={styles.BoldBody}>Tax: ${tax.toFixed(2)}</Text>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
         <Text style={styles.BoldBody}>Total: ${global.totalcost}</Text>

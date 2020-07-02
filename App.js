@@ -112,7 +112,7 @@ export default function App({ navigation }) {
         } else {
           //GET request
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.27:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -165,7 +165,7 @@ export default function App({ navigation }) {
           alert('The password fields do not match');
         } else {
           //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.27:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
+          fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
           })
