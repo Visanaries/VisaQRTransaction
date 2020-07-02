@@ -20,8 +20,8 @@ const Checkout = ({ route, navigation }) => {
   }, 0);
 
   var tax = sum * .0625;
-  var total= tax+sum;
-  global.totalcost =total;
+  var total= tax+sum ;
+  global.totalcost = total;
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -46,14 +46,16 @@ const Checkout = ({ route, navigation }) => {
               keyExtractor={item => item.id}
               />
       <View style={{flexDirection: 'row', justifyContent: 'flex-end', borderTopColor: 'black', borderTopWidth: 3}}>
-        <Text style = {styles.BoldBody}>Sub-Total: ${sum.toFixed(2)}</Text>
+        {/* Took tofixout */}
+        <Text style = {styles.BoldBody}>Sub-Total: ${sum}</Text> 
+
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <Text style = {styles.BoldBody}>Tax: ${tax.toFixed(2)}</Text>
+        <Text style = {styles.BoldBody}>Tax: ${tax}</Text>
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>  
-        <Text style = {styles.BoldBody}>Total: ${global.totalcost.toFixed(2)}</Text>
-      </View>
+        <Text style = {styles.BoldBody}>Total: ${global.totalcost}</Text>
+      </View> 
       <View style={{flexDirection: 'row'}}>
       <TouchableOpacity  style={styles.GreyButton}>
           <Button

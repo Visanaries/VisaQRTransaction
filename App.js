@@ -37,7 +37,8 @@ function SplashScreen() {
 global.username = '';
 global.password = '';
 global.QRname = '';
-global.totalcost = '';
+global.totalcost = '0.00';
+global.ammount = '';
 const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
