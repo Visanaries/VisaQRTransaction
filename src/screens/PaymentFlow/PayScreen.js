@@ -11,20 +11,20 @@ import { TextInput } from 'react-native-gesture-handler';
 //  global.ammount = '2.00';
 function getPayment() {
   
-  //return fetch(`http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
+  // return fetch(`http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
   return fetch(`http://10.0.0.226:5000/payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
     .then((response) => response.json())
     .then((json) => {
-       
-      return json.payMerchant;
     })
     .catch((error) => {
       console.error(error);
     });
+  // alert(global.totalcost);
+  // console.log(global.totalcost);
 }
 
 const PayScreen = ({ navigation }) => {
-  const [value, onChangeText] = React.useState('$');
+  const [value, onChangeText] = React.useState('');
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -41,7 +41,7 @@ const PayScreen = ({ navigation }) => {
       onChangeText={text => onChangeText(text)}
       value={value}
       
-      {...toString(global.totalcost=value)}
+      {...global.totalcost=Number(value).toFixed(2)}
       
     />}
       <Button title='Pay' onPress={() => getPayment()} />
