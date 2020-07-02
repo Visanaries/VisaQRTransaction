@@ -11,7 +11,7 @@ const HomeScreen = () => {
 
   React.useEffect(() => {
     //GET request 
-    fetch(`http://10.0.0.226:5000/funds/${global.username}/${global.password}`, {
+    fetch(`http://192.168.1.8:5000/funds/${global.username}/${global.password}`, {
         method: 'GET' 
         //Request Type 
     })
@@ -28,7 +28,7 @@ const HomeScreen = () => {
 
   React.useEffect(() => {
     //GET request 
-    fetch(`http://10.0.0.226:5000/transactionHistory/${global.username}/${global.password}`, {
+    fetch(`http://192.168.1.8:5000/transactionHistory/${global.username}/${global.password}`, {
         method: 'GET' 
         //Request Type 
     })
@@ -51,7 +51,7 @@ const HomeScreen = () => {
           
           <View style={styles.header}>
             <View style={styles.headerContent}>
-                <Text style={styles.name}>{global.username} profile page</Text>
+                <Text style={styles.name}>{global.username} Home Page</Text>
             </View>
           </View>
 
@@ -60,26 +60,29 @@ const HomeScreen = () => {
           </View>
 
           <View>
+            <TouchableOpacity style = {styles.signOutButton} onPress={() => signOut()}>
+              <Text style = {styles.signOutText}>SIGN OUT</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View>
             {/* Funds */}
-            <Text>Funds: {funds}</Text>
+            <Text>Funds: {Number(funds).toFixed(2)}</Text>
             {/* Transaction History */}
             <Text>Transaction History:</Text>
             <FlatList
               inverted
-              style={styles.feed}
+              style={styles.transactionList}
               data={transactionHistory}
               renderItem={({ item, index }) => (
-                <Text>Name: {transactionHistory[index].name}; Amount: {transactionHistory[index].amount}</Text>
+                <View style = {styles.listItemView}>
+                  <Text style = {styles.transactionNameText}>{transactionHistory[index].name}</Text>
+                  <Text style = {styles.transactionAmountText}>${transactionHistory[index].amount.toFixed(2)}</Text>
+                </View>
               )}
               keyExtractor={(item) => item.index}
               showsVerticalScrollIndicator={false}
             />
-          </View>
-
-          <View>
-            <TouchableOpacity style = {styles.signOutButton} onPress={() => signOut()}>
-              <Text style = {styles.signOutText}>SIGN OUT</Text>
-            </TouchableOpacity>
           </View>
 
         </View>
@@ -94,7 +97,7 @@ const styles = StyleSheet.create({
 
   },
     header:{
-        backgroundColor: "#1a1f71",
+        backgroundColor: "#1A1F71",
       
       },
       middler:{
@@ -102,12 +105,12 @@ const styles = StyleSheet.create({
       
       },
       footer:{
-        backgroundColor: "#1a1f71",
+        backgroundColor: "#1A1F71",
       
       },
       headerContent:{
         padding:30,
-        alignItems: 'center',
+        alignItems: 'center',        
       },
       middlerContent:{
         padding:30,
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
       },
       name:{
         fontSize:35,
-        color:"#faaa13",
+        color:"#FFFFFF",
         fontWeight: 'bold',
       },
       background_size: {
@@ -194,9 +197,38 @@ const styles = StyleSheet.create({
         padding: 13,
         fontSize: 25,
       }, 
-      feed:
+      transactionList:
       {
-        backgroundColor: "#FFFFFF",
+        color: "black",
+        fontSize: 20,
+        margin: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        padding: 10,
+        borderWidth: 3,
+        borderColor: "#F7B600",
+        borderRadius: 15,
+      },
+      listItemView:
+      {
+        //backgroundColor: "#FFFFFF",
+        margin: 3,
+        padding: 10,
+        borderRadius: 15,
+        borderColor: "#1A1F71",
+        borderWidth: 2,
+      },
+      transactionNameText:
+      {
+        color: "#000000",
+        textAlign: "left",
+        fontSize: 20,
+      },
+      transactionAmountText:
+      {
+        textAlign: "right",
+        color: "#000000",
+        fontSize: 20,
       },
 });
 
