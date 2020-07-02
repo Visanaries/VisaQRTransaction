@@ -55,7 +55,7 @@ const Checkout = ({ route, navigation }) => {
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>  
         <Text style = {styles.BoldBody}>Total: ${global.totalcost}</Text>
-      </View>
+      </View> 
       <View style={{flexDirection: 'row'}}>
       <TouchableOpacity  style={styles.GreyButton}>
           <Button
