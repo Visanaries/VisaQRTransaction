@@ -54,10 +54,7 @@ const Payment = ({ navigation }) => {
           <Text style = {styles.buttonText}>Pay: Input Amount</Text>
         </TouchableOpacity>
 
-        {/* Menu */}
-        <TouchableOpacity style = {styles.payButtons} onPress={() => navigation.navigate('Menu')}>
-          <Text style = {styles.buttonText}>Menu</Text>
-        </TouchableOpacity>
+        
       </View>
 
       <View style = {styles.cancelView}>

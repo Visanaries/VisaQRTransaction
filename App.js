@@ -24,6 +24,7 @@ import Payment from './src/screens/PaymentFlow/Payment';
 import OptionStackScreen from './src/screens/PaymentFlow/OptionStackScreen';
 import BottomTabNav from './src/screens/navigation/BottomTabNav';
 import Menu from './src/screens/menu/Menu';
+import PaymentTwo from './src/screens/PaymentFlow/PaymentTwo';
 // import TestingDB from './src/components/TestingDB/TestingDB';
 // import Axios from 'axios';
 
@@ -112,7 +113,7 @@ export default function App({ navigation }) {
         } else {
           //GET request
           // fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.8:5000/verifyCredentials/" + data.username + "/" + data.password, {
+          fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
               method: 'GET' 
               //Request Type 
           })
@@ -165,7 +166,7 @@ export default function App({ navigation }) {
           alert('The password fields do not match');
         } else {
           //GET request  fetch("http://10.0.0.226:5000/verifyCredentials/" + data.username + "/" + data.password, {
-          fetch("http://192.168.1.8:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
+          fetch("http://10.0.0.226:5000/newUserAccount/" + data.firstName + "/" + data.lastName + "/" + data.username + "/" + data.password + "/" + data.email, {
               method: 'GET' 
               //Request Type 
           })
@@ -231,6 +232,7 @@ export default function App({ navigation }) {
             <Stack.Screen name='PayScreen' component={PayScreen} />
             <Stack.Screen name='Payment' component={Payment} />
             <Stack.Screen name='Menu' component={Menu} />
+            <Stack.Screen name='PaymentTwo' component={PaymentTwo} />
             <Stack.Screen
               name=' OptionStackScreen'
               component={OptionStackScreen}

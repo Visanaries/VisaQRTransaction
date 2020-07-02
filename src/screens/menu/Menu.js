@@ -26,7 +26,7 @@ class Menu extends React.Component {
 
   componentDidMount() {
     //GET request
-    fetch(`http://192.168.1.8:5000/menuItems/${global.QRname}`, {
+    fetch(`http://10.0.0.226:5000/menuItems/${global.QRname}`, {
       // fetch(`http://10.0.0.226:5000/menuItems/McDonald's`, {
       method: 'GET',
       //Request Type

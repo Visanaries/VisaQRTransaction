@@ -15,7 +15,7 @@ import { Window_Width, Window_Height } from '../../utils/constants';
 function doPayment() {
   //return fetch(`http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`)
   return fetch(
-    `http://192.168.1.8:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`
+    `http://10.0.0.226:5000//payMerchant/${global.totalcost}/${global.username}/${global.password}/${global.QRname}`
   )
     .then((response) => response.json())
     .then((json) => {

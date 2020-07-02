@@ -14,7 +14,7 @@ const TransactionScreen = () => {
   React.useEffect(() => {
     //GET request
     fetch(
-      `http://192.168.1.8:5000/transactionHistory/${global.username}/${global.password}`,
+      `http://10.0.0.226:5000/transactionHistory/${global.username}/${global.password}`,
       {
         method: 'GET',
         //Request Type

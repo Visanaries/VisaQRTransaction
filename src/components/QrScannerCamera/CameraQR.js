@@ -30,7 +30,7 @@ export default function CameraQR({ navigation }) {
 
 
     //GET request
-    fetch(`http://192.168.1.8:5000/type/${global.QRname}`, {
+    fetch(`http://10.0.0.226:5000/type/${global.QRname}`, {
       // fetch(`http://10.0.0.226:5000/menuItems/McDonald's`, {
       method: 'GET',
       //Request Type
@@ -86,7 +86,7 @@ export default function CameraQR({ navigation }) {
           <Button title={`Tap to Follow Scanned Link to Merchant`}onPress={() => navigation.navigate('Payment')}/> 
       )}
       {renderIf(userType == "Cardholder",
-          <Button title={`Tap to Follow Scanned Link to Cardholder`}onPress={() => navigation.navigate('Payment')}/> 
+          <Button title={`Tap to Follow Scanned Link to Cardholder`}onPress={() => navigation.navigate('PaymentTwo')}/> 
           // MAKE ALTERNATE PAY SCREEN FOR CARDHOLDERS - WITHOUT MENU OPTION - FETCH IS ALSO DIFFERENT
       )}
        {/* <Button title={`Tap to Follow Scanned Link to Menu`}onPress={() => navigation.navigate('Payment')}/>  */}
