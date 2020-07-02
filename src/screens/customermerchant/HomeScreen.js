@@ -44,9 +44,10 @@ const HomeScreen = () => {
         </View>
       </View>
         <CustomerQRGenorator />
-        <Text style={styles.body}>{global.username}'s Wallet</Text>
+        {/* <Text style={styles.body}>{global.username}'s Wallet</Text> */}
         {/* Funds */}
-        <Text style={styles.body}>Remaining Balance: {Number(funds).toFixed(2)}</Text>
+        <Text style={styles.body}>In Use: Prepaid Visa Card</Text>
+        <Text style={styles.body}>Funds: ${Number(funds).toFixed(2)}</Text>
         <View style={{justifyContent: 'flex-end'}}>
           <TouchableOpacity
             style={styles.signOutButton}
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   body: {
     fontWeight: 'bold',
     fontSize: 30,
-    color: '#000000',
+    color: '#1A1F71',
     justifyContent: 'center',
     textAlign: 'center'
   },
@@ -194,6 +195,25 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     color: '#000000',
     fontSize: 20,
+  },
+  qrView:
+  {
+    borderWidth: 3,
+    borderColor: "#F7B600",
+    padding: 50,
+    borderRadius: 20,
+    margin: 20,
+    //marginTop: 70,
+  },
+  QRtext:
+  {
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#1A1F71',
+    justifyContent: 'center',
+    textAlign: 'center',
+    //marginTop: 50,
+    //marginBottom: 0,
   },
 });
 

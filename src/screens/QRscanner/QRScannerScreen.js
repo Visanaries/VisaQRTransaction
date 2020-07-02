@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     resizeMode: 'contain',
-    marginTop:90,
-    marginBottom: 50,
+    marginTop: 100,
+    marginBottom: 30,
   },
 });

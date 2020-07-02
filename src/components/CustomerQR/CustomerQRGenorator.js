@@ -70,15 +70,13 @@ export default function CustomerQRGenorator() {
         
           <View>
            <View style={styles.middlerContent}>
-             <TouchableOpacity
-             onPress={() => getDataUsingGet()}
-             > 
             
-           <Image style = {styles.background_size}   
-            source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${global.username}size=100x100`}}
-            />
-             {/* <Text>{global.username} {global.password}</Text>  */}
-            </TouchableOpacity>
+            <View style={styles.qrView}>
+              <Image style = {styles.background_size}   
+              source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${global.username}size=100x100`}}
+              />
+            </View>
+
             {/* <Button title={'testQR'} style = {styles.background_size} onPress={() => getDataUsingGet()}/> */}
  
             {/* <Image style = {styles.background_size} 
@@ -179,10 +177,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       background_size: {
-        marginTop: 100,
-        width: 200,
-        height: 200,
-        alignItems: 'center'
+        ///marginTop: 60,
+        width: 225,
+        height: 225,
+        alignItems: 'center',
+        // borderWidth: 3,
+        // borderColor: "#F7B600",
+        // padding: 50,
     },
       body: {
         padding:30,
@@ -215,7 +216,14 @@ const styles = StyleSheet.create({
         backgroundColor:"#E6E6FA",
        // borderWidth: 4,
         borderColor: "#E6E6FA",
-        marginBottom:10,
+        marginBottom: 10,
       },
-  
+      qrView:
+      {
+        marginTop: 25,
+        borderWidth: 3,
+        borderColor: "#F7B600",
+        padding: 30,
+        borderRadius: 20,
+      },
 });
