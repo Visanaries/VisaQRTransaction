@@ -10,6 +10,7 @@ import {
 import AuthContext from '../../constants/AuthContext';
 import ScreenContainer from '../../components/ScreenContainer';
 import CustomerQRGenorator from '../../components/CustomerQR/CustomerQRGenorator';
+import Constants from 'expo-constants';
 import { ListItem } from 'react-native-elements';
 const HomeScreen = () => {
   const { signOut } = React.useContext(AuthContext);
@@ -36,33 +37,25 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <ScreenContainer>
-      <View>
-        <View style={styles.header}>
-          <View style={styles.headerContent}>
-            <Text style={styles.name}>{global.username} Home Page</Text>
-          </View>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.headerContent}>
+          <Text style={styles.name}>{global.username} Home Page</Text>
         </View>
-
-        <View>
-          <CustomerQRGenorator />
-        </View>
-
-        <View>
+      </View>
+        <CustomerQRGenorator />
+        <Text style={styles.body}>{global.username}'s Wallet</Text>
+        {/* Funds */}
+        <Text style={styles.body}>Remaining Balance: {Number(funds).toFixed(2)}</Text>
+        <View style={{justifyContent: 'flex-end'}}>
           <TouchableOpacity
             style={styles.signOutButton}
             onPress={() => signOut()}
           >
             <Text style={styles.signOutText}>SIGN OUT</Text>
           </TouchableOpacity>
-        </View>
-
-        <View>
-          {/* Funds */}
-          <Text>Funds: {Number(funds).toFixed(2)}</Text>
-        </View>
       </View>
-    </ScreenContainer>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -117,8 +110,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   body: {
-    padding: 30,
-    backgroundColor: '#E6E6FA',
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#000000',
+    justifyContent: 'center',
+    textAlign: 'center'
   },
   box: {
     padding: 5,
@@ -160,6 +156,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1, // iPhone
     shadowRadius: 2, // iPhone
     elevation: 2, //Android
+  },
+  container: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
   },
   signOutText: {
     color: '#FFFFFF',

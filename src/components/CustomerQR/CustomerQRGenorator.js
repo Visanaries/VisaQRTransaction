@@ -73,7 +73,7 @@ export default function CustomerQRGenorator() {
              <TouchableOpacity
              onPress={() => getDataUsingGet()}
              > 
-               
+            
            <Image style = {styles.background_size}   
             source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${global.username}size=100x100`}}
             />
@@ -106,8 +106,6 @@ export default function CustomerQRGenorator() {
 
             
 
-            </View>
-            <View  style={styles.footer}>
             </View>
         </View>
 
@@ -143,8 +141,7 @@ const styles = StyleSheet.create({
       
       },
       middler:{
-        backgroundColor: "#FFFFFF",
-      
+        backgroundColor: "#1a1f71",
       },
       footer:{
         backgroundColor: "#1a1f71",
