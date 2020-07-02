@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 //import { TextInput } from 'react-native-gesture-handler';
 
 function getgetPayment() {
@@ -36,14 +37,29 @@ const Payment = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>PAY</Text>
+          <Text style={styles.name}>Options</Text>
         </View>
       </View>
       {/* <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput> */}
-      <Button title='Pay' onPress={() => payAndNav()} />
-      <Button title='PayPay' onPress={() => navigation.navigate('PayScreen')} />
-      <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
-      <Button title='Cancel' onPress={() => navigation.goBack()} />
+      <View style={styles.buttons}>
+        <Button
+          style={{ fontWeight: '700' }}
+          title='Pay'
+          onPress={() => payAndNav()}
+        />
+      </View>
+      <View style={styles.buttons}>
+        <Button
+          title='Input Amount'
+          onPress={() => navigation.navigate('PayScreen')}
+        />
+      </View>
+      <View style={styles.buttons}>
+        <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
+      </View>
+      <View style={(styles.buttons, styles.cancelButton)}>
+        <Button title='Cancel' onPress={() => navigation.goBack()} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -104,5 +120,16 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: '700',
     borderRadius: 15,
+  },
+  buttons: {
+    backgroundColor: '#faaa13',
+    padding: 20,
+    margin: 10,
+  },
+  cancelButton: {
+    marginTop: 375,
+    marginHorizontal: 20,
+    backgroundColor: '#ff5148',
+  
   },
 });

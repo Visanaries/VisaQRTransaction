@@ -29,20 +29,22 @@ function getPayment() {
 const PayScreen = ({ navigation }) => {
   const [value, onChangeText] = React.useState('');
   let payAndNav = () => {
-    getgetPayment();
+    getPayment();
     navigation.navigate('Home');
   };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.name}>PAY</Text>
+          <Text style={styles.name}>Input Amount</Text>
         </View>
       </View>
       {
         /* <TextInput style={styles.numInput} keyboardType='numeric' maxLength={5} placeholder="$"></TextInput> */
         <TextInput
           // style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          placeholder="$"
+          placeholderTextColor='white'
           style={styles.numInput}
           keyboardType='numeric'
           maxLength={5}
@@ -51,10 +53,13 @@ const PayScreen = ({ navigation }) => {
           {...(global.totalcost = Number(value).toFixed(2))}
         />
       }
-      <Button title='Pay' onPress={() => payAndNav()} />
+      <View style={styles.payButton}>
+        <Button title='Pay' onPress={() => payAndNav()} />
+      </View>
+
       {/* <Button></Button> */}
-      <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
-      <Button title='Cancel' onPress={() => navigation.goBack()} />
+      {/* <Button title='Menu' onPress={() => navigation.navigate('Menu')} />
+      <Button title='Cancel' onPress={() => navigation.goBack()} /> */}
     </SafeAreaView>
   );
 };
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   numInput: {
-    backgroundColor: '#faaa09',
+    backgroundColor: '#172274',
     color: 'white',
     margin: 50,
     padding: 10,
@@ -116,4 +121,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     borderRadius: 15,
   },
+  payButton: {
+    backgroundColor: '#FCB70A',
+    margin: 20,
+    borderRadius: 15,
+    padding: 15,
+  }
 });

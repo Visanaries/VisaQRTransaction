@@ -32,13 +32,10 @@ export default function QRScannerScreen({ navigation }) {
         <View>
           <View style={styles.middlerContent}>
             <TouchableOpacity onPress={() => navigation.navigate('CameraQR')}>
-              <ImageBackground
-                source={{
-                  uri:
-                    'https://www.dummies.com/wp-content/uploads/324172.image0.jpg',
-                }}
-                style={styles.background_size}
-              ></ImageBackground>
+              <Image
+                style={styles.imageStyle}
+                source={require('../../image_resources/QRLogo.png')}
+              />
             </TouchableOpacity>
             <Text style={styles.pressToStart}>
               &#9757;Press to start scanning &#9757;
@@ -133,5 +130,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1a1f71',
     fontSize: 25,
+  },
+  imageStyle: {
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
   },
 });
