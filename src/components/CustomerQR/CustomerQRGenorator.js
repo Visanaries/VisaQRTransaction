@@ -73,7 +73,7 @@ export default function CustomerQRGenorator() {
             
             <View style={styles.qrView}>
               <Image style = {styles.background_size}   
-              source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data= ${global.username}size=100x100`}}
+              source={{uri: `https://api.qrserver.com/v1/create-qr-code/?data=${global.username}`}}
               />
             </View>
 
